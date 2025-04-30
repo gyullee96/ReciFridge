@@ -1,9 +1,9 @@
 # 바코드 / 상품정보 API 크롤링서버 
 
 
-## 환경변수 파일 
+## 환경변수 파일 (.env)
 
-```env
+```env 
 PORT=3000
 PRODUNCT_INFO_SVR_ENDPOINT=https://gs1.koreannet.or.kr
 ```
@@ -26,6 +26,9 @@ ex) http://localhost:3000/products/8801115336709
 
 ### 결과값 
 
+| Node서버를 실행시키지 못하실 경우 아래 주소에서 테스트 해주세용. 
+
+[https://team.ideatags.io/products/8801062865284](https://team.ideatags.io/products/8801062865284)
 
 
 ```
