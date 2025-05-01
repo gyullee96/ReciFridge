@@ -1,0 +1,163 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.ingredients-status-wrap {
+  width: 100%;
+  height: 100vh;
+  padding: 15px;
+  background-color: #fffaef;
+}
+
+.refrigerator-wrap {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  border: 8px solid #a1c8c4;
+  border-radius: 30px;
+}
+
+.filter {
+  padding: 20px;
+  border-bottom: 8px solid #a1c8c4;
+}
+
+.filter input {
+  width: 100%;
+  padding: 10px;
+  border: 4px solid #a1c8c4;
+  border-radius: 6px;
+  color: #1b4a5e;
+  font-size: 16px;
+}
+
+.filter input:focus {
+  outline: none;
+}
+
+.filter input::-webkit-input-placeholder {
+  color: #a1c8c4;
+}
+
+.refrigerator {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.status-list {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 20px;
+  gap: 25px;
+  overflow-y: auto;
+  max-height: calc(100vh - 240px);
+}
+
+.status-list li {
+  position: relative;
+  width: 150px;
+  height: 150px;
+  background-color: #fff;
+  border-radius: 20px;
+  text-align: center;
+  padding: 15px;
+  color: #1b4a5e;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.status-list li span {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  z-index: 2;
+  height: 22px;
+  padding: 0 5px;
+  background-color: green;
+  color: #fff;
+  font-size: 12px;
+  border-radius: 10px;
+  font-weight: 400;
+  line-height: 22px;
+}
+
+.status-list li.expired {
+  background-color: #000;
+  color: #fff;
+}
+
+.status-list li.warning {
+  background-color: #f68528;
+}
+
+.status-list li span.expired {
+  background-color: #000;
+}
+
+.status-list li span.warning {
+  background-color: red;
+}
+
+.status-list li img {
+  width: 80%;
+}
+
+.layer-info {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.65);
+  color: #fff;
+  text-align: left;
+  padding: 10px;
+  font-size: 14px;
+  font-weight: 400;
+  border-radius: 20px;
+  opacity: 0;
+  transform: translateX(20px);
+  transition: all 0.3s ease-in-out;
+}
+
+.status-list li:hover .layer-info {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.li-selected {
+  border: 5px solid #709ea3;
+}
+
+.go-recipe {
+  position: fixed;
+  width: 100%;
+  bottom: 130px;
+  left: 0;
+  text-align: center;
+}
+
+.go-recipe button {
+  width: 70%;
+  background-color: #f68528;
+}
+
+.nav-footer {
+  display: flex;
+  justify-content: space-around;
+  border-top: 8px solid #a1c8c4;
+  padding: 10px;
+}
+
+.nav-footer button {
+  display: flex;
+  flex-direction: column;
+  color: #56868d;
+  font-weight: 600;
+}

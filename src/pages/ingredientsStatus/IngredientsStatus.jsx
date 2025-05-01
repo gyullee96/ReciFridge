@@ -1,0 +1,150 @@
+import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import './IngredientsStatus.style.css';
+import Button from '@mui/material/Button';
+import HomeIcon from '@mui/icons-material/Home';
+import AddCircleIcon from '@mui/icons-material/AddCircle';
+import SettingsIcon from '@mui/icons-material/Settings';
+
+const myItems = [
+  {
+    num: 0,
+    name: '토마토',
+    count: 1,
+    expiration: '2025-05-02',
+    registratioin: '2025-03-09',
+    icon: './food-sample.png',
+  },
+  {
+    num: 1,
+    name: '상추',
+    count: 1,
+    expiration: '2025-04-28',
+    registratioin: '2025-03-09',
+    icon: './food-sample.png',
+  },
+  {
+    num: 2,
+    name: '배추',
+    count: 1,
+    expiration: '2025-05-30',
+    registratioin: '2025-03-09',
+    icon: './food-sample.png',
+  },
+];
+
+const IngredientsStatus = () => {
+  const navigate = useNavigate();
+  const [selectedItems, setSelectedItems] = useState([]);
+  const [searchText, setSearchText] = useState('');
+
+  const filteredItems = myItems
+    .filter((item) =>
+      item.name.toLowerCase().includes(searchText.toLowerCase()),
+    )
+    .sort((a, b) => new Date(a.expiration) - new Date(b.expiration));
+
+  const handleSelect = (id) => {
+    setSelectedItems((prevSelected) =>
+      prevSelected.includes(id)
+        ? prevSelected.filter((i) => i !== id)
+        : [...prevSelected, id],
+    );
+  };
+
+  const getDDayInfo = (targetDateStr) => {
+    const targetDate = new Date(targetDateStr);
+    const today = new Date();
+
+    targetDate.setHours(0, 0, 0, 0);
+    today.setHours(0, 0, 0, 0);
+
+    const diffDays = Math.floor((targetDate - today) / (1000 * 60 * 60 * 24));
+
+    let text = '';
+    let className = '';
+
+    if (diffDays > 0) {
+      text = `D-${diffDays}`;
+    } else if (diffDays === 0) {
+      text = `D-day`;
+    } else {
+      text = `D+${Math.abs(diffDays)}`;
+    }
+
+    if (diffDays < 0) {
+      className = 'expired';
+    } else if (diffDays <= 3) {
+      className = 'warning';
+    } else {
+      className = '';
+    }
+
+    return { text, className };
+  };
+
+  useEffect(() => {
+    console.log('담겨있는재료', selectedItems);
+  }, [selectedItems]);
+
+  return (
+    <div className="ingredients-status-wrap">
+      <div className="refrigerator-wrap">
+        <div className="filter">
+          <input
+            type="text"
+            placeholder="재료 찾기"
+            value={searchText}
+            onChange={(e) => setSearchText(e.target.value)}
+          />
+        </div>
+
+        <div className="refrigerator">
+          <ul className="status-list">
+            {filteredItems.map((item, index) => {
+              const { text, className } = getDDayInfo(item.expiration);
+              return (
+                <li
+                  key={index}
+                  onClick={() => handleSelect(index)}
+                  className={`${className} ${selectedItems.includes(index) ? 'li-selected' : ''}`}
+                >
+                  <span className={className}>{text}</span>
+                  <img src={item.icon} alt={item.name} />
+                  <div>{item.name}</div>
+                  <div className="layer-info">
+                    <div>재고수량: {item.count}개</div>
+                    <div>유통기한: {item.expiration}</div>
+                    <div>구매일자: {item.registratioin}</div>
+                  </div>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+        {selectedItems.length > 0 && (
+          <div className="go-recipe">
+            <Button variant="contained" onClick={() => navigate('/recipe')}>
+              선택한 재료의 레시피 보기
+            </Button>
+          </div>
+        )}
+        <nav className="nav-footer">
+          <Button variant="text" onClick={() => navigate('/')}>
+            <HomeIcon />
+            <div>Home</div>
+          </Button>
+          <Button variant="text" onClick={() => navigate('/search')}>
+            <AddCircleIcon />
+            Add Item
+          </Button>
+          <Button variant="text" onClick={() => navigate('/recipe')}>
+            <SettingsIcon />
+            Recipes
+          </Button>
+        </nav>
+      </div>
+    </div>
+  );
+};
+export default IngredientsStatus;
