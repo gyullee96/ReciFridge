@@ -12,11 +12,32 @@
 }
 
 .refrigerator-wrap {
+  position: relative;
   display: flex;
   flex-direction: column;
   height: 100%;
   border: 8px solid #a1c8c4;
   border-radius: 30px;
+}
+
+.refrigerator-wrap:before {
+  position: absolute;
+  bottom: -18px;
+  left: 10%;
+  content: '';
+  width: 50px;
+  height: 10px;
+  background-color: #1b4a5e;
+}
+
+.refrigerator-wrap:after {
+  position: absolute;
+  bottom: -18px;
+  right: 10%;
+  content: '';
+  width: 50px;
+  height: 10px;
+  background-color: #1b4a5e;
 }
 
 .filter {
@@ -51,17 +72,19 @@
   list-style: none;
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
+  align-content: flex-start;
   padding: 20px;
   gap: 25px;
   overflow-y: auto;
-  max-height: calc(100vh - 240px);
+  max-height: calc(100vh - 228px);
 }
 
 .status-list li {
   position: relative;
-  width: 150px;
-  height: 150px;
-  background-color: #fff;
+  width: 130px;
+  height: 130px;
+  background-color: #d4e8df;
   border-radius: 20px;
   text-align: center;
   padding: 15px;
@@ -112,8 +135,12 @@
   position: absolute;
   top: 0;
   left: 0;
+  z-index: 1;
   width: 100%;
   height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   background-color: rgba(0, 0, 0, 0.65);
   color: #fff;
   text-align: left;
@@ -126,9 +153,27 @@
   transition: all 0.3s ease-in-out;
 }
 
-.status-list li:hover .layer-info {
+.layer-info.show {
   opacity: 1;
   transform: translateX(0);
+}
+
+.button-info {
+  position: absolute;
+  right: 5px;
+  bottom: 3px;
+  z-index: 2;
+  color: #000;
+  transition: opacity 0.3s ease;
+  opacity: 1;
+}
+
+.button-info.close {
+  color: #fff;
+}
+
+.status-list li.expired .button-info {
+  color: lightgray;
 }
 
 .li-selected {
@@ -141,11 +186,20 @@
   bottom: 130px;
   left: 0;
   text-align: center;
+  z-index: 3;
 }
 
 .go-recipe button {
   width: 70%;
   background-color: #f68528;
+  border-radius: 20px;
+  font-size: 18px;
+}
+
+.ingredients-name {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 
 .nav-footer {

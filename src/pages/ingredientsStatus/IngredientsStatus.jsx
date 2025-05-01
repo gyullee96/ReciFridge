@@ -5,6 +5,8 @@ import Button from '@mui/material/Button';
 import HomeIcon from '@mui/icons-material/Home';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import SettingsIcon from '@mui/icons-material/Settings';
+import InfoIcon from '@mui/icons-material/Info';
+import CancelIcon from '@mui/icons-material/Cancel';
 
 const myItems = [
   {
@@ -37,6 +39,7 @@ const IngredientsStatus = () => {
   const navigate = useNavigate();
   const [selectedItems, setSelectedItems] = useState([]);
   const [searchText, setSearchText] = useState('');
+  const [openedInfos, setOpenedInfos] = useState([]);
 
   const filteredItems = myItems
     .filter((item) =>
@@ -83,6 +86,17 @@ const IngredientsStatus = () => {
     return { text, className };
   };
 
+  const handleInfo = (index, e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setOpenedInfos(
+      (prev) =>
+        prev.includes(index)
+          ? prev.filter((i) => i !== index) // 이미 열려 있으면 닫기
+          : [...prev, index], // 아니면 열기
+    );
+  };
+
   useEffect(() => {
     console.log('담겨있는재료', selectedItems);
   }, [selectedItems]);
@@ -111,8 +125,22 @@ const IngredientsStatus = () => {
                 >
                   <span className={className}>{text}</span>
                   <img src={item.icon} alt={item.name} />
-                  <div>{item.name}</div>
-                  <div className="layer-info">
+                  <div className="ingredients-name">{item.name}</div>
+                  {openedInfos.includes(index) ? (
+                    <CancelIcon
+                      className={'button-info close'}
+                      onClick={(e) => handleInfo(index, e)}
+                    />
+                  ) : (
+                    <InfoIcon
+                      className={'button-info'}
+                      onClick={(e) => handleInfo(index, e)}
+                    />
+                  )}
+
+                  <div
+                    className={`layer-info ${openedInfos.includes(index) ? 'show' : ''}`}
+                  >
                     <div>재고수량: {item.count}개</div>
                     <div>유통기한: {item.expiration}</div>
                     <div>구매일자: {item.registratioin}</div>
