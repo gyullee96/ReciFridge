@@ -1,4 +1,4 @@
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import {
   Box,
   Button,
@@ -9,8 +9,24 @@ import {
   Typography,
 } from '@mui/material';
 import React from 'react';
-
+import { useNavigate } from 'react-router-dom';
+import useRecipesByIngredientsQuery from '../../hooks/useRecipesByIngredients';
+import globalStore from '../../store/globalStore';
 const RecipePage = () => {
+  const navigate = useNavigate();
+  const gotoBackPage = () => navigate(-1);
+  const { ingredients } = globalStore();
+  console.log('i', ingredients);
+  const { data, isLoading, isError, error } =
+    useRecipesByIngredientsQuery('꼬막');
+
+  console.log('data', data);
+  if (isLoading) {
+    return <>isLoading</>;
+  }
+  if (isError) {
+    return <>{error.message}</>;
+  }
   return (
     <div
       style={{
@@ -23,49 +39,103 @@ const RecipePage = () => {
       <Box
         sx={{
           p: 2,
-          backgroundColor: '#F9F2E2',
+          backgroundColor: '#fffaef',
           width: '100%',
           maxWidth: '500px',
         }}
       >
-        <Button startIcon={<ArrowBackIcon />} sx={{ mb: 2 }}>
-          뒤로가기
-        </Button>
-        <Stack direction="row" sx={{ width: '100%' }} mb={6}>
-          {[...Array(5)].map((_, i) => (
+        <Button
+          startIcon={<ArrowBackIosIcon />}
+          sx={{ mb: 2, color: 'black', width: '3rem', height: '3rem' }}
+          onClick={gotoBackPage}
+        />
+        <div
+          style={{
+            border: 'none',
+            borderTop: '0.6rem solid #A1C8C4',
+            marginBottom: '1rem',
+          }}
+        />
+        <Stack
+          direction="row"
+          sx={{
+            width: '100%',
+            alignItems: 'center',
+          }}
+        >
+          {ingredients.map((ingredient, i) => (
             <Box
               key={i}
-              component="img"
-              src="https://cdn.imweb.me/thumbnail/20230107/6f41120888517.png"
-              alt="재료"
               sx={{
+                backgroundColor: '#EFEACE',
+                aspectRatio: '1 / 1',
+                borderRadius: '1.5rem',
+                margin: '0.1rem',
                 width: '20%',
                 height: '20%',
+                alignContent: 'center',
+                justifyContent: 'center',
                 flexGrow: 1,
-                objectFit: 'contain',
+                transition: 'transform 0.3s ease-in-out',
+                '&:hover': {
+                  transform: 'scale(1.3)',
+                },
               }}
-            />
+            >
+              <img
+                src={ingredient.url}
+                style={{
+                  width: '100%',
+                  height: 'auto',
+                }}
+                alt="재료"
+              />
+            </Box>
           ))}
         </Stack>
+        <div
+          style={{
+            border: 'none',
+            borderTop: '0.6rem solid #A1C8C4',
+            marginTop: '1rem',
+            marginBottom: '1rem',
+          }}
+        />
         <Stack spacing={2}>
-          {[...Array(4)].map((_, i) => (
+          {data?.map((menu, i) => (
             <Card
               key={i}
               sx={{
                 display: 'flex',
                 alignItems: 'center',
-                padding: '1.5rem',
+                padding: {
+                  xs: '0.5rem',
+                  sm: '1.5rem',
+                  md: '1.5rem',
+                },
+                background: '#fffaef',
+                border: {
+                  xs: '0.2rem solid #A1C8C4',
+                  sm: '0.4rem solid #A1C8C4',
+                  md: '0.3rem solid #A1C8C4',
+                },
                 borderRadius: '30px',
                 gap: {
                   xs: '1rem',
                   sm: '3rem',
                   md: '2rem',
                 },
+                overflow: 'hidden',
+                clipPath: 'ellipse(75% 100% at center)',
+                transition: 'transform 0.3s ease-in-out',
+                '&:hover': {
+                  transform: 'scale(1.02)',
+                },
               }}
             >
               <CardMedia
                 component="img"
-                image="https://img.daily.co.kr/@files/www.daily.co.kr/content/food/2017/20170919/85a12c2c27b3f05fb7fb0a8af3645f13.jpg"
+                image={menu?.MANUAL_IMG01}
                 alt="요리"
                 sx={{
                   width: {
@@ -82,21 +152,33 @@ const RecipePage = () => {
                 }}
               />
               <CardContent>
-                <Stack sx={{ gap: { xs: '1rem', sm: '1rem', md: '1rem' } }}>
+                <Stack sx={{ gap: { xs: '0rem', sm: '1rem', md: '1rem' } }}>
                   <Typography
                     sx={{
                       fontSize: { xs: '1.5rem', sm: '1.8rem', md: '2rem' },
+                      fontWeight: { xs: '500', sm: '500', md: '500' },
                     }}
                   >
-                    김치찌개
+                    {menu.RCP_NM}
                   </Typography>
                   <Typography
                     sx={{
                       fontSize: { xs: '1.2rem', sm: '1.5rem', md: '1.8rem' },
+                      fontWeight: { xs: '500', sm: '500', md: '500' },
                     }}
                     color="text.secondary"
                   >
-                    성분
+                    <Typography
+                      sx={{
+                        display: '-webkit-box',
+                        WebkitLineClamp: 2,
+                        WebkitBoxOrient: 'vertical',
+                        overflow: 'hidden',
+                        textOverflow: 'ellipsis',
+                      }}
+                    >
+                      {menu?.RCP_PARTS_DTLS}
+                    </Typography>
                   </Typography>
                 </Stack>
               </CardContent>
@@ -107,5 +189,4 @@ const RecipePage = () => {
     </div>
   );
 };
-
 export default RecipePage;

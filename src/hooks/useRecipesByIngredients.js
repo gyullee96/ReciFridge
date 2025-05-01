@@ -1,17 +1,16 @@
 import { useQuery } from '@tanstack/react-query';
 import recipeApi from '../utils/recipeApi';
+const url = '/COOKRCP01/json/0/1000/RCP_PARTS_DTLS=';
 
-const url = '/COOKRCP01/json/0/1/RCP_NM=';
-
-const fetchRecipe = ({ id, keyword, page, filter }) => {
-  console.log(`fetchRecipe ${id} ${keyword} ${page} ${filter}`);
-  return recipeApi.get(url + id);
+const fetchRecipe = (ingredient) => {
+  console.log(`fetch!!!!!!!!! ${ingredient}`);
+  return recipeApi.get(url + encodeURIComponent(ingredient));
 };
 
-const useRecipeSearchQuery = ({ id, keyword, page, filter }) => {
+const useRecipesByIngredientsQuery = (ingredients) => {
   return useQuery({
-    queryKey: ['recipe-query', { id, keyword, page, filter }],
-    queryFn: () => fetchRecipe({ id, keyword, page, filter }),
+    queryKey: ['ingredients-query', { ingredients }],
+    queryFn: () => fetchRecipe(ingredients),
     retry: 3,
     retryDelay: (count) => {
       console.log('fetchRecipe, retry', count);
@@ -24,7 +23,8 @@ const useRecipeSearchQuery = ({ id, keyword, page, filter }) => {
     // refetchInterval: 3000, should be requested every 3 seconds.
     // enabled: false, // It is NOT requested when the component is mounted.
     throwOnError: true,
+    select: (result) => result.data.COOKRCP01.row,
   });
 };
 
-export default useRecipeSearchQuery;
+export default useRecipesByIngredientsQuery;
