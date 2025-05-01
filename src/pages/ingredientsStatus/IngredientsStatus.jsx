@@ -7,33 +7,7 @@ import AddCircleIcon from '@mui/icons-material/AddCircle';
 import SettingsIcon from '@mui/icons-material/Settings';
 import InfoIcon from '@mui/icons-material/Info';
 import CancelIcon from '@mui/icons-material/Cancel';
-
-const myItems = [
-  {
-    num: 0,
-    name: '토마토',
-    count: 1,
-    expiration: '2025-05-02',
-    registratioin: '2025-03-09',
-    icon: './food-sample.png',
-  },
-  {
-    num: 1,
-    name: '상추',
-    count: 1,
-    expiration: '2025-04-28',
-    registratioin: '2025-03-09',
-    icon: './food-sample.png',
-  },
-  {
-    num: 2,
-    name: '배추',
-    count: 1,
-    expiration: '2025-05-30',
-    registratioin: '2025-03-09',
-    icon: './food-sample.png',
-  },
-];
+import globalStore from '../../store/globalStore';
 
 const IngredientsStatus = () => {
   const navigate = useNavigate();
@@ -41,7 +15,9 @@ const IngredientsStatus = () => {
   const [searchText, setSearchText] = useState('');
   const [openedInfos, setOpenedInfos] = useState([]);
 
-  const filteredItems = myItems
+  const ingredients = globalStore((state) => state.ingredients);
+
+  const filteredItems = ingredients
     .filter((item) =>
       item.name.toLowerCase().includes(searchText.toLowerCase()),
     )
