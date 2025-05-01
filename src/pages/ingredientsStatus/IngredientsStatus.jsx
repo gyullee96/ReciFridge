@@ -118,9 +118,12 @@ const IngredientsStatus = () => {
                   <div
                     className={`layer-info ${openedInfos.includes(item.id) ? 'show' : ''}`}
                   >
-                    <div>재고수량: {item.count}개</div>
-                    <div>유통기한: {item.expiration}</div>
-                    <div>구매일자: {item.registratioin}</div>
+                    <div>재고수량 : {item.count}개</div>
+                    <div>
+                      유통기한 :
+                      <br />
+                      {item.expiration}
+                    </div>
                   </div>
                 </li>
               );

@@ -146,10 +146,10 @@
   background-color: rgba(0, 0, 0, 0.65);
   color: #fff;
   text-align: left;
-  padding: 8px;
-  font-size: 12px;
+  padding: 10px;
+  font-size: 13px;
   font-weight: 400;
-  border-radius: 20px;
+  border-radius: 15px;
   opacity: 0;
   transform: translateX(20px);
   transition: all 0.3s ease-in-out;
