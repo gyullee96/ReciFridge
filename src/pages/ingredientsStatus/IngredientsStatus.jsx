@@ -2,12 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './IngredientsStatus.style.css';
 import Button from '@mui/material/Button';
-import HomeIcon from '@mui/icons-material/Home';
-import AddCircleIcon from '@mui/icons-material/AddCircle';
-import SettingsIcon from '@mui/icons-material/Settings';
 import InfoIcon from '@mui/icons-material/Info';
 import CancelIcon from '@mui/icons-material/Cancel';
 import globalStore from '../../store/globalStore';
+import NavFooter from '../../common/NavFooter';
 
 const IngredientsStatus = () => {
   const navigate = useNavigate();
@@ -154,20 +152,7 @@ const IngredientsStatus = () => {
             </Button>
           </div>
         )}
-        <nav className="nav-footer">
-          <Button variant="text" onClick={() => navigate('/')}>
-            <HomeIcon />
-            <div>Home</div>
-          </Button>
-          <Button variant="text" onClick={() => navigate('/search')}>
-            <AddCircleIcon />
-            Add Item
-          </Button>
-          <Button variant="text" onClick={() => navigate('/recipe')}>
-            <SettingsIcon />
-            Recipes
-          </Button>
-        </nav>
+        <NavFooter />
       </div>
     </div>
   );

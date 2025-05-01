@@ -1,0 +1,13 @@
+.nav-footer {
+  display: flex;
+  justify-content: space-around;
+  border-top: 8px solid #a1c8c4;
+  padding: 10px;
+}
+
+.nav-footer button {
+  display: flex;
+  flex-direction: column;
+  color: #56868d;
+  font-weight: 600;
+}
