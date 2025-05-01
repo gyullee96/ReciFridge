@@ -1,7 +1,15 @@
+
+import { Route, Routes } from 'react-router-dom';
 import './App.css';
+import Home from './pages/HomePage/Home';
 
 function App() {
-  return <div>This is feature branch eykang</div>;
+  console.log('Running');
+  return (
+    <Routes>
+      <Route path="/" element={<Home />} />
+    </Routes>
+  );
 }
 
 export default App;
