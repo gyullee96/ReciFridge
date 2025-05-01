@@ -192,15 +192,22 @@
   width: 100%;
   bottom: 130px;
   left: 0;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
   text-align: center;
   z-index: 3;
 }
 
 .go-recipe button {
-  width: 70%;
+  width: 40%;
   background-color: #f68528;
   border-radius: 20px;
   font-size: 18px;
+}
+
+.go-recipe button.button-delete {
+  background-color: #a1c8c4;
 }
 
 .ingredients-name {

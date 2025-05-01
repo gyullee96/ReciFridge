@@ -16,6 +16,7 @@ const IngredientsStatus = () => {
   const [openedInfos, setOpenedInfos] = useState([]);
 
   const ingredients = globalStore((state) => state.ingredients);
+  const removeIngredient = globalStore((state) => state.removeIngredient);
 
   const filteredItems = ingredients
     .filter((item) =>
@@ -91,31 +92,31 @@ const IngredientsStatus = () => {
 
         <div className="refrigerator">
           <ul className="status-list">
-            {filteredItems.map((item, index) => {
+            {filteredItems.map((item) => {
               const { text, className } = getDDayInfo(item.expiration);
               return (
                 <li
-                  key={index}
-                  onClick={() => handleSelect(index)}
-                  className={`${className} ${selectedItems.includes(index) ? 'li-selected' : ''}`}
+                  key={item.id}
+                  onClick={() => handleSelect(item.id)}
+                  className={`${className} ${selectedItems.includes(item.id) ? 'li-selected' : ''}`}
                 >
                   <span className={className}>{text}</span>
                   <img src={item.icon} alt={item.name} />
                   <div className="ingredients-name">{item.name}</div>
-                  {openedInfos.includes(index) ? (
+                  {openedInfos.includes(item.id) ? (
                     <CancelIcon
                       className={'button-info close'}
-                      onClick={(e) => handleInfo(index, e)}
+                      onClick={(e) => handleInfo(item.id, e)}
                     />
                   ) : (
                     <InfoIcon
                       className={'button-info'}
-                      onClick={(e) => handleInfo(index, e)}
+                      onClick={(e) => handleInfo(item.id, e)}
                     />
                   )}
 
                   <div
-                    className={`layer-info ${openedInfos.includes(index) ? 'show' : ''}`}
+                    className={`layer-info ${openedInfos.includes(item.id) ? 'show' : ''}`}
                   >
                     <div>재고수량: {item.count}개</div>
                     <div>유통기한: {item.expiration}</div>
@@ -128,8 +129,25 @@ const IngredientsStatus = () => {
         </div>
         {selectedItems.length > 0 && (
           <div className="go-recipe">
-            <Button variant="contained" onClick={() => navigate('/recipe')}>
-              선택한 재료의 레시피 보기
+            <Button
+              variant="contained"
+              onClick={() =>
+                navigate('/recipe', {
+                  selectedItems: { selectedItems },
+                })
+              }
+            >
+              레시피 보기
+            </Button>
+            <Button
+              className="button-delete"
+              variant="contained"
+              onClick={() => {
+                removeIngredient(selectedItems);
+                setSelectedItems([]);
+              }}
+            >
+              재료 삭제
             </Button>
           </div>
         )}
