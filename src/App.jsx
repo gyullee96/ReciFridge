@@ -5,7 +5,11 @@ import AppLayout from './layout/AppLayout';
 import Home from './pages/HomePage/Home';
 import RecipeDetail from './pages/RecipeDetailPage/RecipeDetail';
 import RecipeSearchPage from './pages/RecipeSearchPage/RecipeSearchPage';
-import IngredientsStatus from './pages/ingredientsStatus/ingredientsStatus';
+import IngredientsStatus from './pages/ingredientsStatus/IngredientsStatus';
+
+import IngredientsSearch from './pages/ingredientsSearch/IngredientsSearch';
+import IngredientsBarcodeSearch from './pages/ingredientsSearch/ingredientsBarcodeSearch';
+
 function App() {
   return (
     <Routes>
@@ -13,6 +17,10 @@ function App() {
         {' '}
         {/* todo : cover page */}
         <Route path="home" element={<Home />} />
+        <Route path="ingredients">
+          <Route path="barcode" element={<IngredientsBarcodeSearch />} />
+          <Route path="search" element={<IngredientsSearch />} />
+        </Route>
         <Route path="recipe" element={<AppLayout />}>
           <Route index element={<RecipeSearchPage />} />{' '}
           {/* todo : recipe page */}
