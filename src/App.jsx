@@ -13,14 +13,14 @@ import IngredientsBarcodeSearch from './pages/ingredientsSearch/ingredientsBarco
 function App() {
   return (
     <Routes>
-      <Route path="/">
+      <Route path="/" element={<AppLayout />}>
         <Route index element={<Home />} />
         <Route path="ingredients">
           <Route path="barcode" element={<IngredientsBarcodeSearch />} />
           <Route path="search" element={<IngredientsSearch />} />
         </Route>
         <Route path="recipe" element={<AppLayout />}>
-          <Route index element={<RecipeSearchPage />} />{' '}
+          <Route index element={<RecipeSearchPage />} />
           {/* todo : recipe page */}
           <Route path=":id" element={<RecipeDetail />} />
         </Route>
