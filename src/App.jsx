@@ -14,9 +14,7 @@ function App() {
   return (
     <Routes>
       <Route path="/">
-        {' '}
-        {/* todo : cover page */}
-        <Route path="home" element={<Home />} />
+        <Route index element={<Home />} />
         <Route path="ingredients">
           <Route path="barcode" element={<IngredientsBarcodeSearch />} />
           <Route path="search" element={<IngredientsSearch />} />
