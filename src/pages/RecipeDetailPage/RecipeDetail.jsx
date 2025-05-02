@@ -56,27 +56,38 @@ const RecipeDetail = () => {
 
     return (
         <div className='recipe-main'>
+            <hr style={{ width: '100%', border: '3px solid #A1C8C4' }}></hr>
             <div style={{ marginTop: 10 }}>
                 <img src={recipe.ATT_FILE_NO_MAIN} className='image-box' />
             </div>
-            <h1 style={{ fontWeight: 800 }}>
+            <div style={{ border: 'none', borderTop: '0.5rem solid #A1C8C4' }} />
+
+            <h1 style={{ color: 'black', fontWeight: 700 }}>
                 {recipe.RCP_NM}
             </h1>
-            <p style={{ width: '80%' }}>
+            <div style={{ border: 'none', borderTop: '0.5rem solid #A1C8C4' }} />
+
+            <p style={{ width: '80%', textAlign: 'center' }}>
                 {recipe.RCP_NA_TIP}
             </p>
+            <div style={{ border: 'none', borderTop: '0.5rem solid #A1C8C4' }} />
+
             <hr style={{ width: '100%', border: '3px solid #A1C8C4' }}></hr>
-            <h3 style={{ width: '80%' }}>
+            <div style={{ border: 'none', borderTop: '0.5rem solid #A1C8C4' }} />
+
+            <h4 style={{ width: '80%' }}>
                 {ingredient.map((part, index) => {
-                    return (<div key={index} style={{ margin: '10px' }}>{part}</div>)
+                    return (<div key={index} style={{}}>{part}</div>)
                 })}
-            </h3>
+            </h4>
+            <div style={{ border: 'none', borderTop: '0.5rem solid #A1C8C4' }} />
             <hr style={{ width: '100%', border: '3px solid #A1C8C4' }}></hr>
+
             <div className='description-container'>
                 {manual.map((content, index) => {
-                    return (<div key={index}>
+                    return (<div key={index} className='description-component'>
                         <img src={content[0]} className='image-box' />
-                        <div>{content[1]}</div>
+                        <div style={{ marginLeft: '15px' }}>{content[1]}</div>
                     </div>)
                 })}
             </div>
