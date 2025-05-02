@@ -49,14 +49,14 @@ export const loadJSONFromLocalStorage = (key) => {
  */
 export const removeDataFromLocalStorage = (key) => {
   if (typeof window === 'undefined') {
-    console.error('localStorage is not available in this environment.');
+    console.error('window 객체가 없네?');
     return false;
   }
   try {
     window.localStorage.removeItem(key);
     return true;
   } catch (error) {
-    console.error(`Error removing data from localStorage for key "${key}":`, error);
+    console.error(`읽어들일 수 없엉. "${key}":`, error);
     return false;
   }
 };
