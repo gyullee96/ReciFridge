@@ -13,7 +13,7 @@ const AppLayout = ({ title }) => {
                     color="dark"
                     startIcon=<ArrowBackIosIcon />
                     onClick={() => navigate(-1)}
-                    cursor
+                    cursor="true"
                 ></Button>
                 <div style={{ position: 'relative', display: 'flex', justifyContent: 'center', width: '100%', textAlign: 'center' }} >
                     Test
