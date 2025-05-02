@@ -11,4 +11,5 @@ COPY . /app
 EXPOSE 5173
 CMD ["npm", "run", "dev"]
 
-#  docker run --name reci-app -d  -p 5173:5173 recifridge-app:1.0.0-01
+# docker build -t recifridge-app:1.0.0-01 .
+# docker run --name reci-app -d -p 5173:5173 recifridge-app:1.0.0-01
