@@ -1,0 +1,22 @@
+.coverpage {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+img {
+    width: 40vh;
+    margin: 1%;
+}
+
+h1 {
+    font-size: 5vh;
+    margin: 2% 40%;
+}
+
+div {
+    font-size: 3vh;
+    margin: 1%;
+}
