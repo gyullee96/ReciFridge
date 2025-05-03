@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import {
   Button,

@@ -3,52 +3,40 @@ import {
   Card,
   CardContent,
   CardMedia,
+  CircularProgress,
   Stack,
   Typography,
 } from '@mui/material';
 import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import useRecipesByIngredientsQuery from '../../hooks/useRecipesByIngredients';
-
+import './RecipeSearchPage.style.css';
 const RecipePage = () => {
   const navigate = useNavigate();
+  const { selectedIngredients: ingredients } = useLocation().state;
+  const selected = ingredients?.flatMap((ingredient) => ingredient?.keyword);
+  const {
+    data: recipesData,
+    isLoading,
+    isError,
+    error,
+  } = useRecipesByIngredientsQuery(selected);
+  while (ingredients.length < 5) ingredients.push(null);
 
-  const { selectedIngredients: ingredients } = useLocation().state || {};
-  console.log('selectedIngredients', ingredients);
-  const { data, isLoading, isError, error } =
-    useRecipesByIngredientsQuery(ingredients);
-
-  console.log('data:', data);
   if (isLoading) {
-    return <>isLoading</>;
+    return (
+      <div className="info-box">
+        <CircularProgress />
+      </div>
+    );
   }
   if (isError) {
-    return <>{error.message}</>;
+    return <div className="info-box">{error.message}</div>;
   }
   return (
-    <div
-      style={{
-        display: 'flex',
-        justifyContent: 'center',
-        width: '100%',
-        height: '100%',
-      }}
-    >
-      <Box
-        sx={{
-          p: 2,
-          backgroundColor: '#fffaef',
-          paddingTop: '10px',
-          width: '100%',
-        }}
-      >
-        <div
-          style={{
-            border: 'none',
-            borderTop: '0.6rem solid #A1C8C4',
-            marginBottom: '1rem',
-          }}
-        />
+    <div className="ingredients">
+      <Box className="ingredients-container">
+        <div className="ingredient-container-br-top" />
         <Stack
           direction="row"
           sx={{
@@ -59,40 +47,24 @@ const RecipePage = () => {
           {ingredients?.map((ingredient, i) => (
             <Box
               key={i}
-              sx={{
-                backgroundColor: '#EFEACE',
-                aspectRatio: '1 / 1',
-                borderRadius: '1.5rem',
-                margin: '0.1rem',
-                width: '20%',
-                height: 'auto%',
-                alignContent: 'center',
-                justifyContent: 'center',
-                flexGrow: 1,
-                transition: 'transform 0.3s ease-in-out',
-              }}
+              className={`ingredient-box ${ingredient?.icon ? 'has-icon' : ''}`}
             >
-              <img
-                src={ingredient.icon}
-                style={{
-                  width: '100%',
-                  height: 'auto',
-                }}
-                alt="재료"
-              />
+              {ingredient?.icon && (
+                <img
+                  src={ingredient?.icon}
+                  style={{
+                    width: '100%',
+                    height: 'auto',
+                  }}
+                  alt="재료"
+                />
+              )}
             </Box>
           ))}
         </Stack>
-        <div
-          style={{
-            border: 'none',
-            borderTop: '0.6rem solid #A1C8C4',
-            marginTop: '1rem',
-            marginBottom: '1rem',
-          }}
-        />
+        <div className="ingredient-container-br-bottom" />
         <Stack spacing={2}>
-          {data?.map((menu, i) => (
+          {recipesData?.map((menu, i) => (
             <Card
               onClick={() => {
                 navigate(`/recipe/detail`, {
@@ -173,7 +145,7 @@ const RecipePage = () => {
                         textOverflow: 'ellipsis',
                       }}
                     >
-                      {menu?.RCP_PARTS_DTLS}
+                      {menu?.RCP_PARTS_DTLS.split('●')}
                     </Typography>
                   </div>
                 </Stack>
