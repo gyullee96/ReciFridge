@@ -15,7 +15,7 @@ const Home = () => {
         <div>
           <img src="/tomato.png" alt="" />
           <img src="/lettuce.png" alt="" />
-          <img src="/egg.png" alt="" />
+          <img src="/sugar.png" alt="" />
         </div>
       </div>
       <div className="expiration">
