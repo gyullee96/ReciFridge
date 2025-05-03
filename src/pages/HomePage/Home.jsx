@@ -1,12 +1,14 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import './Home.css';
 import NavFooter from '../../common/NavFooter';
-import globalStore from '../../store/globalStore';
+import { getIngredients } from '../../utils/localStorageHelper';
+import './Home.css';
 
 const Home = () => {
   const navigate = useNavigate();
-  const { ingredients } = globalStore();
+  const ingredients = getIngredients();
+
+  console.log(ingredients);
 
   const calculateDday = (expirationDate) => {
     const today = new Date();
