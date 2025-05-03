@@ -1,6 +1,7 @@
 import CircularProgress from '@mui/material/CircularProgress';
 import React, { useEffect, useState } from 'react';
 import useBarcodeQuery from '../../hooks/useBarcodeQuery';
+import './ingredientsBarcodeResult.style.css';
 
 const ingredientsBarcodeResult = ({ ppp }) => {
     const [infos, setInfos] = useState([]);
@@ -34,7 +35,7 @@ const ingredientsBarcodeResult = ({ ppp }) => {
     console.log('product', product, infos);
 
     return (
-        <div className='recipe-main'>
+        <div className='result-main'>
             <hr style={{ width: '100%', border: '0.3rem solid #A1C8C4' }}></hr>
             <div style={{ border: 'none', borderTop: '1.0rem solid' }} />
 
