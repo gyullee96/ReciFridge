@@ -21,6 +21,7 @@ import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { TextField } from '@mui/material';
 import MuiAlert from '@mui/material/Alert';
+import FreeBreakfastIcon from '@mui/icons-material/FreeBreakfast';
 import BarcodeThumb from '../../assets/barcode-thumb.png';
 
 const IngredientsSearch = () => {
@@ -95,6 +96,11 @@ const IngredientsSearch = () => {
       <ul className="status-list">
         {isLoading ? (
           <CircularProgress sx={{ color: '709EA3', alignSelf: 'center' }} />
+        ) : filteredItems.length < 1 ? (
+          <p className="no-ingredients">
+            <FreeBreakfastIcon sx={{ color: '#B6DDDA', fontSize: 54 }} />
+            검색한 재료가 없습니다.
+          </p>
         ) : (
           filteredItems.map((item) => (
             <li
