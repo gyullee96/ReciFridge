@@ -6,8 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
+        div {
+            display: block;
+            width: 100%;
+            padding: 20px;
+            overflow: hidden;
+        }
+
         .color-set {
             list-style: none;
+            margin: 0;
+            padding: 0;
         }
 
         .color-set li {
@@ -26,17 +35,30 @@
 
 <body>
     <h1>color set</h1>
-    <ul class="color-set">
-        <li style="background-color: #fffaef"><span>#fffaef</span></li>
-        <li style="background-color: #d4e8df"><span>#d4e8df</span></li>
-        <li style="background-color: #B6DDDA"><span>#B6DDDA</span></li>
-        <li style="background-color: #A1C8C4"><span>#A1C8C4</span></li>
-        <li style="background-color: #709EA3"><span>#709EA3</span></li>
-        <li style="background-color: #5A8C93"><span>#5A8C93</span></li>
-        <li style="background-color: #56868D"><span>#56868D</span></li>
-        <li style="background-color: #1B4A5E"><span>#1B4A5E</span></li>
-        <li style="background-color: #F68528"><span>#F68528</span></li>
-    </ul>
+    <div>
+        <h2>default</h2>
+        <ul class="color-set">
+            <li style="background-color: #d4e8df"><span>#d4e8df</span></li>
+            <li style="background-color: #B6DDDA"><span>#B6DDDA</span></li>
+            <li style="background-color: #A1C8C4"><span>#A1C8C4</span></li>
+            <li style="background-color: #709EA3"><span>#709EA3</span></li>
+            <li style="background-color: #5A8C93"><span>#5A8C93</span></li>
+            <li style="background-color: #56868D"><span>#56868D</span></li>
+            <li style="background-color: #1B4A5E"><span>#1B4A5E</span></li>
+        </ul>
+    </div>
+    <div>
+        <h2>background color</h2>
+        <ul class="color-set">
+            <li style="background-color: #fffaef"><span>#fffaef</span></li>
+        </ul>
+    </div>
+    <div>
+        <h2>strong color</h2>
+        <ul class="color-set">
+            <li style="background-color: #F68528"><span>#F68528</span></li>
+        </ul>
+    </div>
 </body>
 
 </html>
