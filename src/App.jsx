@@ -6,8 +6,8 @@ import CoverPage from './pages/CoverPage/CoverPage';
 import Home from './pages/HomePage/Home';
 import RecipeDetail from './pages/RecipeDetailPage/RecipeDetail';
 import RecipeSearchPage from './pages/RecipeSearchPage/RecipeSearchPage';
-import IngredientsBarcodeResult from './pages/ingredientsSearch/IngredientsBarcodeResult';
 import IngredientsSearch from './pages/ingredientsSearch/IngredientsSearch';
+import IngredientsBarcodeResult from './pages/ingredientsSearch/ingredientsBarcodeResult';
 import IngredientsBarcodeSearch from './pages/ingredientsSearch/ingredientsBarcodeSearch';
 import IngredientsStatus from './pages/ingredientsStatus/IngredientsStatus';
 
