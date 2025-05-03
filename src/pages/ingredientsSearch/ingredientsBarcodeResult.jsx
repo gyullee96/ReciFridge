@@ -1,11 +1,13 @@
 import CircularProgress from '@mui/material/CircularProgress';
 import React, { useEffect, useState } from 'react';
+import useBarcodeQuery from '../../hooks/useBarcodeQuery';
 
-const ingredientsBarcodeResult = ({ product }) => {
+const ingredientsBarcodeResult = ({ ppp }) => {
     const [infos, setInfos] = useState([]);
-    const { data: productData, isLoading, error: queryError } = useBarcodeQuery(8801062865284);
+    const { data: product, isLoading, isError, error } = useBarcodeQuery(8801062865284);
 
     const FILED_COUNT = 10;
+    const INFO_FILTER = [1, 3, 4, 5, 6, 7];
 
     useEffect(() => {
         if (!product)
@@ -14,20 +16,22 @@ const ingredientsBarcodeResult = ({ product }) => {
         let infos = [];
         for (let i = 0; i <= FILED_COUNT; ++i) {
             const infoName = `pvInfo${i}`;
-            if (!product.productDetails.includes(infoName))
+            if ((infoName in product.productDetails) === false)
                 break;
 
-            infos.push([product.productDetails['label'], product.productDetails['value']]);
+            if (!INFO_FILTER.includes(i))
+                continue;
+
+            infos.push([product.productDetails[infoName].label, product.productDetails[infoName].value]);
         }
         setInfos(infos);
-    }, []);
+    }, [product]);
 
     if (isLoading) {
         return <CircularProgress />;
     }
 
-    product = productData.data;
-    console.log('product', product);
+    console.log('product', product, infos);
 
     return (
         <div className='recipe-main'>
@@ -42,20 +46,14 @@ const ingredientsBarcodeResult = ({ product }) => {
             </div>
             <div style={{ border: 'none', borderTop: '1.0rem solid' }} />
 
-            {product?.productPrice &&
-                <p style={{ width: '80%', textAlign: 'center', fontSize: '0.6rem', fontStyle: 'italic' }}>
-                    Price : {product.productPrice}
-                </p>
+            {Number.isFinite('abc') &&
+                <div style={{ width: '80%', display: 'flex', flexDirection: 'column', borderRadius: '10px', border: '5px solid #F68528', padding: '15px', borderColor: 'rgba(246, 133, 40, 0.5)' }}>
+                    <h4>
+                        Price : {product.productPrice}
+                    </h4>
+                </div>
             }
-            <div style={{ border: 'none', borderTop: '0.5rem solid' }} />
-
-            <div style={{ width: '80%', display: 'flex', flexDirection: 'column', borderRadius: '10px', border: '5px solid #F68528', padding: '15px', borderColor: 'rgba(246, 133, 40, 0.5)' }}>
-                <h4>
-                    {infos.map((info, index) => {
-                        return (<div key={index} style={{}}>{part}</div>)
-                    })}
-                </h4>
-            </div>
+            <hr style={{ width: '100%', border: '0.3rem solid #A1C8C4' }}></hr>
             <div style={{ border: 'none', borderTop: '0.5rem solid' }} />
 
             <div className='description-container'>
