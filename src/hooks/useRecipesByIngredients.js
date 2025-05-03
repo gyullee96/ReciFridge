@@ -1,15 +1,18 @@
 import { useQuery } from '@tanstack/react-query';
 import recipeApi from '../utils/recipeApi';
-const url = '/COOKRCP01/json/0/1000/RCP_PARTS_DTLS=';
 
 const fetchRecipe = (ingredient) => {
-  console.log(`fetch!!!!!!!!! ${ingredient}`);
-  return recipeApi.get(url + encodeURIComponent(ingredient));
+  let url = '/COOKRCP01/json/0/1000/';
+  ingredient.forEach((igd) => {
+    url += `RCP_PARTS_DTLS=${encodeURIComponent(igd.name)}&`;
+  });
+  console.log(`fetch!!!!!!!!! ${url}`);
+  return recipeApi.get(url);
 };
 
 const useRecipesByIngredientsQuery = (ingredients) => {
   return useQuery({
-    queryKey: ['ingredients-query', { ingredients }],
+    queryKey: ['ingredients-query', ingredients],
     queryFn: () => fetchRecipe(ingredients),
     retry: 3,
     retryDelay: (count) => {

@@ -16,11 +16,10 @@ const RecipePage = () => {
   const navigate = useNavigate();
   const gotoBackPage = () => navigate(-1);
   const { ingredients } = globalStore();
-  console.log('i', ingredients);
   const { data, isLoading, isError, error } =
     useRecipesByIngredientsQuery('꼬막');
 
-  console.log('data', data);
+  console.log('data:', data);
   if (isLoading) {
     return <>isLoading</>;
   }
@@ -63,7 +62,7 @@ const RecipePage = () => {
             alignItems: 'center',
           }}
         >
-          {ingredients.map((ingredient, i) => (
+          {ingredients?.map((ingredient, i) => (
             <Box
               key={i}
               sx={{
@@ -155,20 +154,21 @@ const RecipePage = () => {
                 <Stack sx={{ gap: { xs: '0rem', sm: '1rem', md: '1rem' } }}>
                   <Typography
                     sx={{
-                      fontSize: { xs: '1.5rem', sm: '1.8rem', md: '2rem' },
+                      fontSize: 'clamp(0.8rem, 5vw, 1.8rem)',
                       fontWeight: { xs: '500', sm: '500', md: '500' },
                     }}
                   >
                     {menu.RCP_NM}
                   </Typography>
                   <Typography
+                    component="div"
                     sx={{
                       fontSize: { xs: '1.2rem', sm: '1.5rem', md: '1.8rem' },
                       fontWeight: { xs: '500', sm: '500', md: '500' },
                     }}
                     color="text.secondary"
                   >
-                    <Typography
+                    <Box
                       sx={{
                         display: '-webkit-box',
                         WebkitLineClamp: 2,
@@ -178,7 +178,7 @@ const RecipePage = () => {
                       }}
                     >
                       {menu?.RCP_PARTS_DTLS}
-                    </Typography>
+                    </Box>
                   </Typography>
                 </Stack>
               </CardContent>
