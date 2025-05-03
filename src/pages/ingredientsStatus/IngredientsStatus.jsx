@@ -113,11 +113,11 @@ const IngredientsStatus = () => {
                     <img src={item.icon} alt={item.keyword} />
                     <div className="ingredients-name">{item.keyword}</div>
                     <div className="layer-info">
-                      <div>재고수량 : {item.count}개</div>
                       <div>
-                        유통기한 :
-                        <br />
-                        {item.expiration}
+                        재고수량 <strong>{item.count}개</strong>
+                      </div>
+                      <div>
+                        유통기한 <strong>{item.expiration.slice(2)}</strong>
                       </div>
                     </div>
                   </li>
@@ -129,6 +129,7 @@ const IngredientsStatus = () => {
         {selectedItems.length > 0 && (
           <div className="go-recipe">
             <Button
+              className="fade-in"
               variant="contained"
               onClick={() => {
                 let selectedIngredients = [];
@@ -143,7 +144,7 @@ const IngredientsStatus = () => {
               레시피 보기
             </Button>
             <Button
-              className="button-delete"
+              className="button-delete fade-in"
               variant="contained"
               onClick={() => {
                 removeIngredient(selectedItems);
