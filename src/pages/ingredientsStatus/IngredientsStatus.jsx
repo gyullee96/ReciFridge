@@ -1,11 +1,11 @@
+import FreeBreakfastIcon from '@mui/icons-material/FreeBreakfast';
+import Button from '@mui/material/Button';
 import React, { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './IngredientsStatus.style.css';
-import Button from '@mui/material/Button';
-import globalStore from '../../store/globalStore';
-import NavFooter from '../../common/NavFooter';
 import keywordData from '../../../keyword.json';
-import FreeBreakfastIcon from '@mui/icons-material/FreeBreakfast';
+import NavFooter from '../../common/NavFooter';
+import globalStore from '../../store/globalStore';
+import './IngredientsStatus.style.css';
 
 const IngredientsStatus = () => {
   // console.log('keywordData?', keywordData);
@@ -178,11 +178,15 @@ const IngredientsStatus = () => {
           <div className="go-recipe">
             <Button
               variant="contained"
-              onClick={() =>
-                navigate('/recipe', {
-                  state: { selectedItems }, //받는 쪽 const { selectedItems } = useLocation()?.state;
-                })
-              }
+              onClick={() => {
+                let selectedIngredients = [];
+                selectedItems.map((idx) => {
+                  selectedIngredients.push(keywordMap[idx]);
+                });
+                return navigate('/recipe', {
+                  state: { selectedIngredients },
+                });
+              }}
             >
               레시피 보기
             </Button>
