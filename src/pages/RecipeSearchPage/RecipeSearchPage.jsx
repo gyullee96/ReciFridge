@@ -38,8 +38,8 @@ const RecipePage = () => {
         sx={{
           p: 2,
           backgroundColor: '#fffaef',
+          paddingTop: '10px',
           width: '100%',
-          maxWidth: '500px',
         }}
       >
         <div
@@ -65,14 +65,12 @@ const RecipePage = () => {
                 borderRadius: '1.5rem',
                 margin: '0.1rem',
                 width: '20%',
-                height: '20%',
+                height: 'auto%',
                 alignContent: 'center',
                 justifyContent: 'center',
                 flexGrow: 1,
                 transition: 'transform 0.3s ease-in-out',
-                '&:hover': {
-                  transform: 'scale(1.3)',
-                },
+
               }}
             >
               <img
@@ -113,9 +111,9 @@ const RecipePage = () => {
                 },
                 background: '#fffaef',
                 border: {
-                  xs: '0.2rem solid #A1C8C4',
-                  sm: '0.4rem solid #A1C8C4',
-                  md: '0.3rem solid #A1C8C4',
+                  xs: '0.2rem solid #F68528',
+                  sm: '0.4rem solid #F68528',
+                  md: '0.3rem solid #F68528',
                 },
                 borderRadius: '30px',
                 gap: {
@@ -185,7 +183,7 @@ const RecipePage = () => {
           ))}
         </Stack>
       </Box>
-    </div>
+    </div >
   );
 };
 export default RecipePage;

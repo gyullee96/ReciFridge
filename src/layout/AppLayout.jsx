@@ -8,7 +8,7 @@ const AppLayout = ({ title }) => {
 
     return (
         <div>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', backgroundColor: '#fffaef', height: '2rem' }}>
+            <div style={{ display: 'flex', position: 'relative', justifyContent: 'space-between', alignItems: 'center', backgroundColor: '#fffaef', height: '2rem', marginTop: '10px' }}>
                 <Button style={{ position: 'absolute', top: 0, left: 0, maxHeight: '100%', zIndex: 2 }}
                     color="dark"
                     startIcon=<ArrowBackIosIcon />

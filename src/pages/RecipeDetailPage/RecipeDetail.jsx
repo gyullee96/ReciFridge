@@ -80,32 +80,36 @@ const RecipeDetail = () => {
 
     return (
         <div className='recipe-main'>
-            <hr style={{ width: '100%', border: '3px solid #A1C8C4' }}></hr>
+            <hr style={{ width: '100%', border: '0.3rem solid #A1C8C4' }}></hr>
+            <div style={{ border: 'none', borderTop: '1.0rem solid' }} />
+
+            <h1 style={{ color: 'black', fontWeight: 700, fontSize: '2.0rem' }}>
+                {recipe.RCP_NM}
+            </h1>
             <div style={{ marginTop: 10 }}>
                 <img src={recipe.ATT_FILE_NO_MAIN} className='image-box' />
             </div>
-            <div style={{ border: 'none', borderTop: '0.5rem solid #A1C8C4' }} />
+            <div style={{ border: 'none', borderTop: '1.0rem solid' }} />
 
-            <h1 style={{ color: 'black', fontWeight: 700 }}>
-                {recipe.RCP_NM}
-            </h1>
-            <div style={{ border: 'none', borderTop: '0.5rem solid #A1C8C4' }} />
+            {recipe?.RCP_NA_TIP &&
+                <p style={{ width: '80%', textAlign: 'center', fontSize: '0.6rem', fontStyle: 'italic' }}>
+                    Tip : {recipe.RCP_NA_TIP}
+                </p>
+            }
+            <div style={{ border: 'none', borderTop: '0.5rem solid' }} />
 
-            <p style={{ width: '80%', textAlign: 'center' }}>
-                {recipe.RCP_NA_TIP}
-            </p>
-            <div style={{ border: 'none', borderTop: '0.5rem solid #A1C8C4' }} />
+            {/*<hr style={{ width: '100%', border: '3px solid #F68528', opacity: 0.5 }}></hr>*/}
+            <div style={{ border: 'none', borderTop: '0.5rem solid' }} />
 
-            <hr style={{ width: '100%', border: '3px solid #A1C8C4' }}></hr>
-            <div style={{ border: 'none', borderTop: '0.5rem solid #A1C8C4' }} />
-
-            <h4 style={{ width: '80%' }}>
-                {ingredient.map((part, index) => {
-                    return (<div key={index} style={{}}>{part}</div>)
-                })}
-            </h4>
-            <div style={{ border: 'none', borderTop: '0.5rem solid #A1C8C4' }} />
-            <hr style={{ width: '100%', border: '3px solid #A1C8C4' }}></hr>
+            <div style={{ width: '80%', display: 'flex', flexDirection: 'column', borderRadius: '10px', border: '5px solid #F68528', padding: '15px', borderColor: 'rgba(246, 133, 40, 0.5)' }}>
+                <h4>
+                    {ingredient.map((part, index) => {
+                        return (<div key={index} style={{}}>{part}</div>)
+                    })}
+                </h4>
+            </div>
+            <div style={{ border: 'none', borderTop: '0.5rem solid' }} />
+            {/*<hr style={{ width: '100%', border: '3px solid #F68528', opacity: 0.5 }}></hr>*/}
 
             <div className='description-container'>
                 {manual.map((content, index) => {
