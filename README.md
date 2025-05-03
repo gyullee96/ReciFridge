@@ -15,3 +15,4 @@ If you are developing a production application, we recommend using TypeScript wi
 
 npm install ==> 최신버전으로 설치 (^6.3.1 ==> 위화살표는 하위의 릴리즈 버전은 설치허용한다는 의미) ==> 최초 환경셋팅할 때 한번 사용하면 안전
 npm ci ==> package-lock.json 버전으로 설치되어 안전
+main 푸시 테스트
