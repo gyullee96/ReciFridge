@@ -15,15 +15,23 @@ const RecipePage = () => {
   const navigate = useNavigate();
   const { selectedIngredients: ingredients } = useLocation().state;
   const selected = ingredients?.flatMap((ingredient) => ingredient?.keyword);
-  const { data, isLoading, isError, error } =
-    useRecipesByIngredientsQuery(selected);
+  const {
+    data: recipesData,
+    isLoading,
+    isError,
+    error,
+  } = useRecipesByIngredientsQuery(selected);
   while (ingredients.length < 5) ingredients.push(null);
 
   if (isLoading) {
-    return <CircularProgress />;
+    return (
+      <div className="info-box">
+        <CircularProgress />
+      </div>
+    );
   }
   if (isError) {
-    return <>{error.message}</>;
+    return <div className="info-box">{error.message}</div>;
   }
   return (
     <div className="ingredients">
@@ -39,17 +47,7 @@ const RecipePage = () => {
           {ingredients?.map((ingredient, i) => (
             <Box
               key={i}
-              sx={{
-                backgroundColor: ingredient?.icon ? '#EFEACE' : '#fffaef',
-                aspectRatio: '1 / 1',
-                borderRadius: '1.5rem',
-                margin: '0.1rem',
-                width: '20%',
-                height: 'auto%',
-                alignContent: 'center',
-                justifyContent: 'center',
-                flexGrow: 1,
-              }}
+              className={`ingredient-box ${ingredient?.icon ? 'has-icon' : ''}`}
             >
               {ingredient?.icon && (
                 <img
@@ -66,7 +64,7 @@ const RecipePage = () => {
         </Stack>
         <div className="ingredient-container-br-bottom" />
         <Stack spacing={2}>
-          {data?.map((menu, i) => (
+          {recipesData?.map((menu, i) => (
             <Card
               onClick={() => {
                 navigate(`/recipe/detail`, {
@@ -74,7 +72,6 @@ const RecipePage = () => {
                 });
               }}
               key={i}
-              className="recipe-card"
               sx={{
                 display: 'flex',
                 alignItems: 'center',
@@ -148,7 +145,7 @@ const RecipePage = () => {
                         textOverflow: 'ellipsis',
                       }}
                     >
-                      {menu?.RCP_PARTS_DTLS}
+                      {menu?.RCP_PARTS_DTLS.split('●')}
                     </Typography>
                   </div>
                 </Stack>
