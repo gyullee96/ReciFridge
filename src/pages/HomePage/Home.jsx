@@ -1,7 +1,10 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import './Home.css';
 
 const Home = () => {
+  const navigate = useNavigate();
+
   return (
     <div className="refridge-border">
       <div className="main-top">
@@ -10,7 +13,7 @@ const Home = () => {
         </div>
         <div className="main-logo">ReciFridge</div>
       </div>
-      <div className="ingredient">
+      <div className="ingredient" onClick={() => navigate('/status')}>
         <div>My items: 18</div>
         <div>
           <img src="/tomato.png" alt="" />
