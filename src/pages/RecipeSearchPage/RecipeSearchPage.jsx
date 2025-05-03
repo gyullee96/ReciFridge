@@ -1,21 +1,20 @@
-import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import {
   Box,
-  Button,
   Card,
   CardContent,
   CardMedia,
   Stack,
-  Typography,
+  Typography
 } from '@mui/material';
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import useRecipesByIngredientsQuery from '../../hooks/useRecipesByIngredients';
-import globalStore from '../../store/globalStore';
+
 const RecipePage = () => {
   const navigate = useNavigate();
-  const gotoBackPage = () => navigate(-1);
-  const { ingredients } = globalStore();
+
+  const { selectedIngredients: ingredients } = useLocation()?.state;
+  console.log('selectedIngredients', ingredients);
   const { data, isLoading, isError, error } =
     useRecipesByIngredientsQuery(ingredients);
 
@@ -43,11 +42,6 @@ const RecipePage = () => {
           maxWidth: '500px',
         }}
       >
-        <Button
-          startIcon={<ArrowBackIosIcon />}
-          sx={{ mb: 2, color: 'black', width: '3rem', height: '3rem' }}
-          onClick={gotoBackPage}
-        />
         <div
           style={{
             border: 'none',
@@ -82,7 +76,7 @@ const RecipePage = () => {
               }}
             >
               <img
-                src={ingredient?.url}
+                src={ingredient.icon}
                 style={{
                   width: '100%',
                   height: 'auto',

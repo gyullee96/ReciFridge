@@ -12,8 +12,6 @@ const RecipeDetail = () => {
     const [manual, setManual] = useState([]);
     const [ingredient, setIngredient] = useState([]);
 
-    console.log('RecipeDetail');
-
     console.log(id, data, code, recipe);
 
     const FILED_COUNT = 20;

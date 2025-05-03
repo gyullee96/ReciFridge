@@ -4,7 +4,7 @@ import recipeApi from '../utils/recipeApi';
 const url = '/COOKRCP01/json/0/1000/RCP_PARTS_DTLS=';
 const fetchRecipe = (ingredient) => {
   console.log(`fetch!!!!!!!!! ${url}`);
-  return recipeApi.get(url + encodeURIComponent(ingredient?.name));
+  return recipeApi.get(url + encodeURIComponent(ingredient?.keyword));
 };
 const useRecipesByIngredientsQuery = (ingredients) => {
   const queries = useQueries({
