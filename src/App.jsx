@@ -4,12 +4,11 @@ import './App.css';
 import AppLayout from './layout/AppLayout';
 import CoverPage from './pages/CoverPage/CoverPage';
 import Home from './pages/HomePage/Home';
+import IngredientsBarcodeSearch from './pages/IngredientsSearch/IngredientsBarcodeSearch';
+import IngredientsSearch from './pages/IngredientsSearch/IngredientsSearch';
+import IngredientsStatus from './pages/IngredientsStatus/IngredientsStatus';
 import RecipeDetail from './pages/RecipeDetailPage/RecipeDetail';
 import RecipeSearchPage from './pages/RecipeSearchPage/RecipeSearchPage';
-import IngredientsSearch from './pages/ingredientsSearch/IngredientsSearch';
-import IngredientsBarcodeResult from './pages/ingredientsSearch/ingredientsBarcodeResult';
-import IngredientsBarcodeSearch from './pages/ingredientsSearch/ingredientsBarcodeSearch';
-import IngredientsStatus from './pages/ingredientsStatus/IngredientsStatus';
 
 function App() {
   return (
@@ -20,7 +19,6 @@ function App() {
         <Route path="ingredients">
           <Route path="barcode" element={<IngredientsBarcodeSearch />} />
           <Route path="search" element={<IngredientsSearch />} />
-          <Route path="result" element={<IngredientsBarcodeResult />} />
         </Route>
         <Route path="recipe" element={<AppLayout />}>
           <Route index element={<RecipeSearchPage />} />

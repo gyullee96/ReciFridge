@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router-dom';
 import useBarcodeQuery from '../../hooks/useBarcodeQuery';
 import IngredientsBarcodeResult from './IngredientsBarcodeResult';
 import './IngredientsBarcodeSearch.style.css';
+
 const IngredientsBarcodeSearch = () => {
   const [barcode, setBarcode] = useState('');
   const [isScanning, setIsScanning] = useState(true);

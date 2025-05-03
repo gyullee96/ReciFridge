@@ -19,7 +19,7 @@ import { useNavigate } from 'react-router-dom';
 import keywordData from '../../../keyword.json';
 import BarcodeThumb from '../../assets/barcode-thumb.png';
 import { addIngredient } from '../../utils/localStorageHelper';
-import '../ingredientsStatus/IngredientsStatus.style.css';
+import '../IngredientsStatus/IngredientsStatus.style.css';
 import './IngredientsSearch.style.css';
 
 const IngredientsSearch = () => {
