@@ -1,8 +1,15 @@
 /* eslint-disable prettier/prettier */
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
+import ViewWeekIcon from '@mui/icons-material/ViewWeek';
+import { Button, Drawer, Snackbar, TextField } from '@mui/material';
+import MuiAlert from '@mui/material/Alert';
+import { LocalizationProvider } from '@mui/x-date-pickers';
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import keywordData from '../../../keyword.json';
-import globalStore from '../../store/globalStore';
+import { addIngredient } from '../../utils/localStorageHelper';
 import '../ingredientsStatus/IngredientsStatus.style.css';
 import './IngredientsSearch.style.css';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
@@ -37,8 +44,6 @@ const IngredientsSearch = () => {
   const [snackbarMessage, setSnackbarMessage] = useState('');
   const [isLoading, setIsLoading] = useState(true);
   const [dialogOpen, setDialogOpen] = useState(false);
-
-  const addIngredients = globalStore((state) => state.addIngredients);
 
   const handleSelect = (item) => {
     setIsDrawerOpen(true);
@@ -159,12 +164,10 @@ const IngredientsSearch = () => {
 
             const item = keywordsList.find((k) => k.id === selectItem);
 
-            addIngredients({
+            addIngredient({
               id: item.id,
-              name: item.keyword,
               count: count,
               expiration: date.toISOString().split('T')[0], // 날짜 형식 맞춤
-              url: item.icon,
             });
 
             setSnackbarMessage(`${item.keyword} 재료를 담았습니다!`);
