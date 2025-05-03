@@ -182,10 +182,10 @@ const IngredientsStatus = () => {
                 let selectedIngredients = [];
                 selectedItems.map((idx) => {
                   selectedIngredients.push(keywordMap[idx]);
-                })
+                });
                 return navigate('/recipe', {
-                  state: { selectedIngredients }
-                })
+                  state: { selectedIngredients },
+                });
               }}
             >
               레시피 보기
