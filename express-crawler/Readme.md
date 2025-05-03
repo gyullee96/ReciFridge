@@ -1,32 +1,39 @@
-# 바코드 / 상품정보 API 크롤링서버 
+# 바코드 / 상품정보 API 크롤링서버
 
 
 ## 환경변수 파일 (.env)
 
-```env 
+```env
 PORT=3000
 PRODUNCT_INFO_SVR_ENDPOINT=https://gs1.koreannet.or.kr
 ```
 
-## 서버 실행법 
+## 서버 실행법
 
 ```
-  npm install 
-  npm run dev 
+  # node
+  npm install
+  npm run dev
+```
+
+```
+  # docker
+  docker build . -t barcode:1.0.0-01
+  docker run --name barcode-search -d  -p 3000:3000 barcode:1.0.0-01
 ```
 
 
-## 호출문법 
+## 호출문법
 
 ```
-[GET] http://localhost:3000/products/:barcode  
+[GET] http://localhost:3000/products/:barcode
 ```
 
 ex) http://localhost:3000/products/8801115336709
 
-### 결과값 
+### 결과값
 
-| Node서버를 실행시키지 못하실 경우 아래 주소에서 테스트 해주세용. 
+| Node서버를 실행시키지 못하실 경우 아래 주소에서 테스트 해주세용.
 
 [https://team.ideatags.io/products/8801062865284](https://team.ideatags.io/products/8801062865284)
 
