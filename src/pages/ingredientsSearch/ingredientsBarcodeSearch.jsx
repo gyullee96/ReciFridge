@@ -17,7 +17,6 @@ const ingredientsBarcodeSearch = () => {
     error,
   } = useBarcodeQuery(barcode);
 
-  console.log('productData,', productData);
   const handleScan = (err, result) => {
     if (result) {
       const scannedBarcode = result.text;
@@ -40,7 +39,7 @@ const ingredientsBarcodeSearch = () => {
   const gotoBackPage = () => navigate(-1);
 
   return (
-    <div>
+    <div className="ingredients-search-wrap">
       <div className="title-top">
         <Button
           startIcon={<ArrowBackIosIcon />}
@@ -49,7 +48,7 @@ const ingredientsBarcodeSearch = () => {
         />
         Keyword Search
         <Button
-          onClick={() => navigate('/ingredients/barcode')}
+          onClick={() => navigate('/ingredients/search')}
           className="button-barcode"
           title="바코드 검색"
         >

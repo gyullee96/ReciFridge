@@ -1,0 +1,25 @@
+.ingredients {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.ingredients-container {
+  padding: 20px;
+  background-color: #fffaef;
+  padding-top: 10px;
+  width: 100%;
+}
+
+.ingredient-container-br-top {
+  border: none;
+  border-top: 0.6rem solid #a1c8c4;
+  margin-bottom: 1rem;
+}
+.ingredient-container-br-bottom {
+  border: none;
+  border-top: 0.6rem solid #a1c8c4;
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+}

@@ -3,15 +3,18 @@ import recipeApi from '../utils/recipeApi';
 
 const url = '/COOKRCP01/json/0/1000/RCP_PARTS_DTLS=';
 const fetchRecipe = (ingredient) => {
-  console.log(`fetch!!!!!!!!! ${url}`);
+  console.log(`fetch!!!!!!!!! ${url}${ingredient}`);
   return recipeApi.get(url + encodeURIComponent(ingredient));
 };
 const useRecipesByIngredientsQuery = (ingredients) => {
   const queries = useQueries({
-    queries: ingredients.map((ingredient) => ({
+    queries: (ingredients ?? []).map((ingredient) => ({
       queryKey: ['ingredient', ingredient],
       queryFn: () => fetchRecipe(ingredient),
-      select: (res) => res?.data?.COOKRCP01?.row || [],
+      select: (res) => {
+        console.log(res);
+        return res?.data?.COOKRCP01?.row || [];
+      },
     })),
   });
 

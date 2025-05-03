@@ -3,52 +3,32 @@ import {
   Card,
   CardContent,
   CardMedia,
+  CircularProgress,
   Stack,
   Typography,
 } from '@mui/material';
 import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import useRecipesByIngredientsQuery from '../../hooks/useRecipesByIngredients';
-
+import './RecipeSearchPage.style.css';
 const RecipePage = () => {
   const navigate = useNavigate();
-
   const { selectedIngredients: ingredients } = useLocation().state;
   const selected = ingredients?.flatMap((ingredient) => ingredient?.keyword);
   const { data, isLoading, isError, error } =
     useRecipesByIngredientsQuery(selected);
   while (ingredients.length < 5) ingredients.push(null);
-  console.log('data:', data, ingredients, selected);
+
   if (isLoading) {
-    return <>isLoading</>;
+    return <CircularProgress />;
   }
   if (isError) {
     return <>{error.message}</>;
   }
   return (
-    <div
-      style={{
-        display: 'flex',
-        justifyContent: 'center',
-        width: '100%',
-        height: '100%',
-      }}
-    >
-      <Box
-        sx={{
-          p: 2,
-          backgroundColor: '#fffaef',
-          paddingTop: '10px',
-          width: '100%',
-        }}
-      >
-        <div
-          style={{
-            border: 'none',
-            borderTop: '0.6rem solid #A1C8C4',
-            marginBottom: '1rem',
-          }}
-        />
+    <div className="ingredients">
+      <Box className="ingredients-container">
+        <div className="ingredient-container-br-top" />
         <Stack
           direction="row"
           sx={{
@@ -84,14 +64,7 @@ const RecipePage = () => {
             </Box>
           ))}
         </Stack>
-        <div
-          style={{
-            border: 'none',
-            borderTop: '0.6rem solid #A1C8C4',
-            marginTop: '1rem',
-            marginBottom: '1rem',
-          }}
-        />
+        <div className="ingredient-container-br-bottom" />
         <Stack spacing={2}>
           {data?.map((menu, i) => (
             <Card
@@ -101,6 +74,7 @@ const RecipePage = () => {
                 });
               }}
               key={i}
+              className="recipe-card"
               sx={{
                 display: 'flex',
                 alignItems: 'center',
