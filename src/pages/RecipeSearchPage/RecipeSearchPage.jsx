@@ -19,6 +19,11 @@ const RecipePage = () => {
   const { data, isLoading, isError, error } =
     useRecipesByIngredientsQuery(ingredients);
 
+  const filledIngredients = [...ingredients];
+
+  while (filledIngredients.length < 5) {
+    filledIngredients.push(null);
+  }
   console.log('data:', data);
   if (isLoading) {
     return <>isLoading</>;
@@ -62,11 +67,11 @@ const RecipePage = () => {
             alignItems: 'center',
           }}
         >
-          {ingredients?.map((ingredient, i) => (
+          {filledIngredients?.map((ingredient, i) => (
             <Box
               key={i}
               sx={{
-                backgroundColor: '#EFEACE',
+                backgroundColor: ingredient?.url ? '#EFEACE' : '#fffaef',
                 aspectRatio: '1 / 1',
                 borderRadius: '1.5rem',
                 margin: '0.1rem',
@@ -75,20 +80,18 @@ const RecipePage = () => {
                 alignContent: 'center',
                 justifyContent: 'center',
                 flexGrow: 1,
-                transition: 'transform 0.3s ease-in-out',
-                '&:hover': {
-                  transform: 'scale(1.3)',
-                },
               }}
             >
-              <img
-                src={ingredient?.url}
-                style={{
-                  width: '100%',
-                  height: 'auto',
-                }}
-                alt="재료"
-              />
+              {ingredient?.url && (
+                <img
+                  src={ingredient?.url}
+                  style={{
+                    width: '100%',
+                    height: 'auto',
+                  }}
+                  alt="재료"
+                />
+              )}
             </Box>
           ))}
         </Stack>
