@@ -10,15 +10,15 @@ const NavFooter = () => {
   const navigate = useNavigate();
   return (
     <nav className="nav-footer">
-      <Button variant="text" onClick={() => navigate('/')}>
+      <Button variant="text" style={{ width: '85px' }} onClick={() => navigate('/')}>
         <HomeIcon />
         <div>Home</div>
       </Button>
-      <Button variant="text" onClick={() => navigate('/ingredients/search')}>
+      <Button variant="text" style={{ width: '85px' }} onClick={() => navigate('/ingredients/search')}>
         <SearchIcon />
         Keyword
       </Button>
-      <Button variant="text" onClick={() => navigate('/ingredients/barcode')}>
+      <Button variant="text" style={{ width: '85px' }} onClick={() => navigate('/ingredients/barcode')}>
         <img src={BarcodeThumb} alt="" style={{ width: '23.99px' }} />
         Barcode
       </Button>
