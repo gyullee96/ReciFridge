@@ -1,12 +1,12 @@
 import React from 'react';
-import './CoverPage.css';
 import { useNavigate } from 'react-router-dom';
+import './CoverPage.css';
 
 const coverPage = () => {
   const navigate = useNavigate();
 
   const handleClick = () => {
-    navigate('/main');
+    navigate('/home');
   };
 
   return (

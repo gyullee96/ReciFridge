@@ -1,15 +1,31 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
-import Home from './pages/HomePage/Home';
+import AppLayout from './layout/AppLayout';
 import CoverPage from './pages/CoverPage/CoverPage';
+import Home from './pages/HomePage/Home';
+import RecipeDetail from './pages/RecipeDetailPage/RecipeDetail';
+import RecipeSearchPage from './pages/RecipeSearchPage/RecipeSearchPage';
+import IngredientsStatus from './pages/ingredientsStatus/IngredientsStatus';
+import IngredientsSearch from './pages/ingredientsSearch/IngredientsSearch';
+import IngredientsBarcodeSearch from './pages/ingredientsSearch/ingredientsBarcodeSearch';
 
 function App() {
-  console.log('Running');
   return (
     <Routes>
-      <Route path="/main" element={<Home />} />
-      <Route path="/" element={<CoverPage />} />
+      <Route path="/">
+        <Route path="" element={<CoverPage />} />
+        <Route path="home" element={<Home />} />
+        <Route path="ingredients">
+          <Route path="barcode" element={<IngredientsBarcodeSearch />} />
+          <Route path="search" element={<IngredientsSearch />} />
+        </Route>
+        <Route path="recipe" element={<AppLayout />}>
+          <Route index element={<RecipeSearchPage />} />
+          <Route path=":id" element={<RecipeDetail />} />
+        </Route>
+        <Route path="status" element={<IngredientsStatus />} />
+      </Route>
     </Routes>
   );
 }
