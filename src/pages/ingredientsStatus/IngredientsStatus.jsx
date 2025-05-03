@@ -180,7 +180,7 @@ const IngredientsStatus = () => {
               variant="contained"
               onClick={() =>
                 navigate('/recipe', {
-                  state: { selectedItems },
+                  state: { selectedItems }, //받는 쪽 const { selectedItems } = useLocation()?.state;
                 })
               }
             >

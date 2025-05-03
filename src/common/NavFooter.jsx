@@ -14,11 +14,11 @@ const NavFooter = () => {
         <HomeIcon />
         <div>Home</div>
       </Button>
-      <Button variant="text" onClick={() => navigate('/search')}>
+      <Button variant="text" onClick={() => navigate('/ingredients/search')}>
         <SearchIcon />
         Keyword
       </Button>
-      <Button variant="text" onClick={() => navigate('/recipe')}>
+      <Button variant="text" onClick={() => navigate('/ingredients/barcode')}>
         <ViewWeekIcon />
         Barcode
       </Button>
