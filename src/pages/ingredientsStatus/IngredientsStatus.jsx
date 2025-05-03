@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import keywordData from '../../../keyword.json';
 import NavFooter from '../../common/NavFooter';
-import globalStore from '../../store/globalStore';
+import { getIngredients, removeIngredients } from '../../utils/localStorageHelper';
 import './IngredientsStatus.style.css';
 import FreeBreakfastIcon from '@mui/icons-material/FreeBreakfast';
 import Button from '@mui/material/Button';
@@ -13,19 +13,16 @@ const IngredientsStatus = () => {
   const [selectedItems, setSelectedItems] = useState([]);
   const [searchText, setSearchText] = useState('');
 
-  const ingredients = globalStore((state) => state.ingredients);
   // keyword.json의 데이터를 id로 매핑
   const keywordMap = keywordData.keyword_db.reduce((acc, item) => {
     acc[item.id] = item;
     return acc;
   }, {});
   // ingredients의 각 항목에 keyword 정보 붙이기
-  const mapped = ingredients.map((ingredient) => ({
+  const mapped = getIngredients().map((ingredient) => ({
     ...ingredient,
     ...keywordMap[ingredient.id],
   }));
-
-  const removeIngredient = globalStore((state) => state.removeIngredient);
 
   const filteredItems = mapped
     .filter((item) =>
@@ -75,10 +72,6 @@ const IngredientsStatus = () => {
   useEffect(() => {
     console.log('담겨있는재료', selectedItems);
   }, [selectedItems]);
-
-  useEffect(() => {
-    console.log('스토어에서 가져온 ingredients:', ingredients);
-  }, [ingredients]);
 
   return (
     <div className="ingredients-status-wrap">
@@ -147,7 +140,7 @@ const IngredientsStatus = () => {
               className="button-delete fade-in"
               variant="contained"
               onClick={() => {
-                removeIngredient(selectedItems);
+                removeIngredients(selectedItems);
                 setSelectedItems([]);
               }}
             >
