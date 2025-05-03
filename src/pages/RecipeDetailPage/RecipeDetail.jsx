@@ -1,21 +1,43 @@
 import CircularProgress from '@mui/material/CircularProgress';
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import useRecipeDetail from '../../hooks/useRecipeDetail';
+import { useLocation } from 'react-router-dom';
 import './RecipeDetail.style.css';
 
 const RecipeDetail = () => {
-    const { id } = useParams();
-    const { data, isLoading, isError, error } = useRecipeDetail({ id, keyword: 'test', page: 1, filter: null });
-    const [recipe, setRecipe] = useState(null);
-    const [code, setCode] = useState(null);
+    //const { id } = useParams();
+    //const { data, isLoading, isError, error } = useRecipeDetail({ id, keyword: 'test', page: 1, filter: null });
+    //const [code, setCode] = useState(null);
+
+    const { menu: recipe } = useLocation()?.state;
+
     const [manual, setManual] = useState([]);
     const [ingredient, setIngredient] = useState([]);
 
-    console.log(id, data, code, recipe);
+    //console.log(id, data, code, recipe);
 
     const FILED_COUNT = 20;
 
+    useEffect(() => {
+        if (recipe) {
+            let manual = [];
+            for (let i = 1; i <= FILED_COUNT; ++i) {
+                const numString = i < 10 ? `0${i}` : `${i}`;
+                const manualName = `MANUAL${numString}`;
+                const manualImgName = `MANUAL_IMG${numString}`;
+
+                if (recipe[manualName] === '')
+                    break;
+
+                manual.push([recipe[manualImgName], recipe[manualName]]);
+            }
+            setManual(manual);
+
+            let ingredient = recipe.RCP_PARTS_DTLS.split('●');
+            setIngredient(ingredient);
+        }
+    }, []);
+
+    /*
     useEffect(() => {
         let recipe = data?.data?.COOKRCP01?.row[0];
         if (recipe) {
@@ -40,16 +62,20 @@ const RecipeDetail = () => {
         }
     }, [data]);
 
-    if (isLoading || !recipe) {
-        return <CircularProgress />;
-    }
-
     if (code != 'INFO-000') {
         return <div> Something went wrong {code}</div>
     }
 
+    if (isLoading) {
+        return <CircularProgress />;
+    }
+
     if (isError) {
         return <div> Critical issue occurred!!!</div>
+    }*/
+
+    if (!manual) {
+        return <CircularProgress />;
     }
 
     return (

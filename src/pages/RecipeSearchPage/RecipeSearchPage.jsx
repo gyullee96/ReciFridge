@@ -97,6 +97,11 @@ const RecipePage = () => {
         <Stack spacing={2}>
           {data?.map((menu, i) => (
             <Card
+              onClick={() => {
+                navigate(`/recipe/detail`, {
+                  state: { menu }
+                })
+              }}
               key={i}
               sx={{
                 display: 'flex',

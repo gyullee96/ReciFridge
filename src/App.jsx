@@ -6,9 +6,9 @@ import CoverPage from './pages/CoverPage/CoverPage';
 import Home from './pages/HomePage/Home';
 import RecipeDetail from './pages/RecipeDetailPage/RecipeDetail';
 import RecipeSearchPage from './pages/RecipeSearchPage/RecipeSearchPage';
-import IngredientsStatus from './pages/ingredientsStatus/IngredientsStatus';
 import IngredientsSearch from './pages/ingredientsSearch/IngredientsSearch';
 import IngredientsBarcodeSearch from './pages/ingredientsSearch/ingredientsBarcodeSearch';
+import IngredientsStatus from './pages/ingredientsStatus/IngredientsStatus';
 
 function App() {
   return (
@@ -22,7 +22,7 @@ function App() {
         </Route>
         <Route path="recipe" element={<AppLayout />}>
           <Route index element={<RecipeSearchPage />} />
-          <Route path=":id" element={<RecipeDetail />} />
+          <Route path="detail" element={<RecipeDetail />} />
         </Route>
         <Route path="status" element={<IngredientsStatus />} />
       </Route>
