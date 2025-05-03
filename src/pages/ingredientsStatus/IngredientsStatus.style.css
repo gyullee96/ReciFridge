@@ -18,6 +18,9 @@
   height: 100%;
   border: 8px solid #a1c8c4;
   border-radius: 30px;
+  box-shadow:
+    0 1px 3px rgba(0, 0, 0, 0.12),
+    0 1px 2px rgba(0, 0, 0, 0.24);
 }
 
 .refrigerator-wrap:before {
@@ -112,12 +115,12 @@
 }
 
 .status-list li.expired {
-  background-color: #000;
+  background-color: rgba(0, 0, 0, 0.4);
   color: #fff;
 }
 
 .status-list li.warning {
-  background-color: #f68528;
+  background-color: rgba(246, 133, 40, 0.5);
 }
 
 .status-list li span.expired {
@@ -146,20 +149,29 @@
   background-color: rgba(0, 0, 0, 0.65);
   color: #fff;
   text-align: left;
-  padding: 10px;
+  padding: 4px;
   font-size: 13px;
   font-weight: 400;
   border-radius: 15px;
   opacity: 0;
-  transform: translateY(10px);
-  transition:
-    opacity 10s ease,
-    transform 10s ease;
+  transform: translateX(10px);
+  transition: all 0.3s ease;
+  text-align: center;
+  line-height: 1.5;
 }
 
-.layer-info.show {
+.layer-info strong {
+  display: block;
+  font-size: 18px;
+}
+
+.status-list li:hover .layer-info {
   opacity: 1;
-  transform: translateY(0);
+  transform: translateX(0);
+}
+
+.layer-info div:first-child {
+  margin-bottom: 5px;
 }
 
 .button-info {
@@ -223,4 +235,17 @@
   text-align: center;
   color: #56868d;
   font-size: 16px;
+}
+
+.fade-in {
+  opacity: 0;
+  transform: translateY(10px);
+  animation: fadeIn 0.2s ease forwards;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

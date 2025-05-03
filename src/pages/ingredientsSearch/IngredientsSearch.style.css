@@ -57,6 +57,20 @@
   width: 100%;
   height: 44.44px;
   border: 4px solid #a1c8c4;
+  padding: 0 8px;
+}
+
+.input-box-info.filter input::-webkit-input-placeholder {
+  color: rgba(147, 146, 146, 0.87);
+}
+
+.input-box-info.filter .MuiPickersSectionList-sectionContent,
+.input-box-info.filter .MuiPickersInputBase-sectionAfter {
+  /* color: #a1c8c4; */
+}
+
+.input-box-info.filter .MuiInputAdornment-root {
+  margin-left: 0;
 }
 
 .input-box-info.filter .MuiPickersOutlinedInput-notchedOutline {
@@ -69,9 +83,8 @@
   padding-bottom: 5px;
 }
 
-.input-box-info.filter
-  .MuiPickersSectionList-root-MuiPickersInputBase-sectionsContainer-MuiPickersOutlinedInput-sectionsContainer {
-  width: auto;
+.input-box-info.filter .MuiPickersSectionList-root {
+  width: auto !important;
 }
 
 .input-box-info.filter
@@ -100,14 +113,14 @@
 
 .title-top .button-barcode {
   position: absolute;
-  top: 0;
+  top: -6px;
   right: -10px;
   cursor: pointer;
   color: #000;
 }
 
-.title-top button:hover {
-  color: #56868d;
+.title-top .button-barcode img {
+  width: 36px;
 }
 
 .bottom-button-wrap .button-refrigerator {
