@@ -12,7 +12,6 @@ const IngredientsStatus = () => {
   const navigate = useNavigate();
   const [selectedItems, setSelectedItems] = useState([]);
   const [searchText, setSearchText] = useState('');
-
   // keyword.json의 데이터를 id로 매핑
   const keywordMap = keywordData.keyword_db.reduce((acc, item) => {
     acc[item.id] = item;
