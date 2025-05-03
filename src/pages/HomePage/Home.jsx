@@ -1,9 +1,11 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import './Home.css';
 import NavFooter from '../../common/NavFooter';
 import globalStore from '../../store/globalStore';
 
 const Home = () => {
+  const navigate = useNavigate();
   const { ingredients } = globalStore();
 
   const calculateDday = (expirationDate) => {
@@ -22,7 +24,7 @@ const Home = () => {
         </div>
         <div className="main-logo">ReciFridge</div>
       </div>
-      <div className="ingredient">
+      <div className="ingredient" onClick={() => navigate('/status')}>
         <div>My items: 18</div>
         <ul>
           {ingredients.map((item) => (
