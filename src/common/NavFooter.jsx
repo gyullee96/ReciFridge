@@ -2,9 +2,9 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import './NavFooter.style.css';
 import SearchIcon from '@mui/icons-material/Search';
-import ViewWeekIcon from '@mui/icons-material/ViewWeek';
 import HomeIcon from '@mui/icons-material/Home';
 import Button from '@mui/material/Button';
+import BarcodeThumb from '../assets/barcode-thumb-bottom.png';
 
 const NavFooter = () => {
   const navigate = useNavigate();
@@ -19,7 +19,7 @@ const NavFooter = () => {
         Keyword
       </Button>
       <Button variant="text" onClick={() => navigate('/ingredients/barcode')}>
-        <ViewWeekIcon />
+        <img src={BarcodeThumb} alt="" style={{ width: '23.99px' }} />
         Barcode
       </Button>
     </nav>

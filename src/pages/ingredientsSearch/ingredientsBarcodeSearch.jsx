@@ -6,8 +6,9 @@ import { React, useState } from 'react';
 import BarcodeScanner from 'react-qr-barcode-scanner';
 import { useNavigate } from 'react-router-dom';
 import useBarcodeQuery from '../../hooks/useBarcodeQuery';
-import './ingredientsBarcodeSearch.style.css';
-const ingredientsBarcodeSearch = () => {
+import IngredientsBarcodeResult from './IngredientsBarcodeResult';
+import './IngredientsBarcodeSearch.style.css';
+const IngredientsBarcodeSearch = () => {
   const [barcode, setBarcode] = useState('');
   const [isScanning, setIsScanning] = useState(true);
   const {
@@ -52,7 +53,7 @@ const ingredientsBarcodeSearch = () => {
           className="button-barcode"
           title="바코드 검색"
         >
-          <SearchIcon />
+          <SearchIcon sx={{ color: '#56868d' }} />
         </Button>
       </div>
       <div className="search">
@@ -74,25 +75,28 @@ const ingredientsBarcodeSearch = () => {
             }}
           >
             <Typography
+              fontWeight="bold"
               sx={{
                 fontSize: 'clamp(0.8rem, 5vw, 1.8rem)',
               }}
             >
               바코드 검색
             </Typography>
-            <p>{!barcode && '바코드를 스캔해주세요.'}</p>
+            <p style={{ marginBottom: '1rem' }}>
+              {!productData && '바코드를 스캔해주세요.'}
+            </p>
           </div>
-          {!barcode && isScanning && (
+          {!productData && (
             <BarcodeScanner
-              width={500}
-              height={500}
+              width="100%"
+              height="100%"
               onUpdate={(err, result) => {
                 handleScan(err, result);
               }}
             />
           )}
 
-          {!barcode && !isScanning && (
+          {!isScanning && (
             <Button variant="contained" onClick={showScanner}>
               바코드 다시 읽기
             </Button>
@@ -103,24 +107,11 @@ const ingredientsBarcodeSearch = () => {
               상품 정보를 가져오는 중 오류가 발생했습니다.
             </p>
           )}
-          {productData && (
-            <div>
-              {productData?.productImage && (
-                <img src={productData?.productImage} />
-              )}
-              <Typography
-                sx={{
-                  fontSize: 'clamp(0.8rem, 5vw, 1.8rem)',
-                }}
-              >
-                {productData?.productName}
-              </Typography>
-            </div>
-          )}
+          {productData && <IngredientsBarcodeResult product={productData} />}
         </Box>
       </div>
     </div>
   );
 };
 // 8807920893789;
-export default ingredientsBarcodeSearch;
+export default IngredientsBarcodeSearch;
