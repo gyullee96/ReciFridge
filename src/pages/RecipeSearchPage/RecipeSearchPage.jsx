@@ -1,7 +1,5 @@
-import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import {
   Box,
-  Button,
   Card,
   CardContent,
   CardMedia,
@@ -9,22 +7,18 @@ import {
   Typography,
 } from '@mui/material';
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import useRecipesByIngredientsQuery from '../../hooks/useRecipesByIngredients';
-import globalStore from '../../store/globalStore';
+
 const RecipePage = () => {
   const navigate = useNavigate();
-  const gotoBackPage = () => navigate(-1);
-  const { ingredients } = globalStore();
+
+  const { selectedIngredients: ingredients } = useLocation().state;
+  const selected = ingredients?.flatMap((ingredient) => ingredient?.keyword);
   const { data, isLoading, isError, error } =
-    useRecipesByIngredientsQuery(ingredients);
-
-  const filledIngredients = [...ingredients];
-
-  while (filledIngredients.length < 5) {
-    filledIngredients.push(null);
-  }
-  console.log('data:', data);
+    useRecipesByIngredientsQuery(selected);
+  while (ingredients.length < 5) ingredients.push(null);
+  console.log('data:', data, ingredients, selected);
   if (isLoading) {
     return <>isLoading</>;
   }
@@ -44,15 +38,10 @@ const RecipePage = () => {
         sx={{
           p: 2,
           backgroundColor: '#fffaef',
+          paddingTop: '10px',
           width: '100%',
-          maxWidth: '500px',
         }}
       >
-        <Button
-          startIcon={<ArrowBackIosIcon />}
-          sx={{ mb: 2, color: 'black', width: '3rem', height: '3rem' }}
-          onClick={gotoBackPage}
-        />
         <div
           style={{
             border: 'none',
@@ -67,24 +56,24 @@ const RecipePage = () => {
             alignItems: 'center',
           }}
         >
-          {filledIngredients?.map((ingredient, i) => (
+          {ingredients?.map((ingredient, i) => (
             <Box
               key={i}
               sx={{
-                backgroundColor: ingredient?.url ? '#EFEACE' : '#fffaef',
+                backgroundColor: ingredient?.icon ? '#EFEACE' : '#fffaef',
                 aspectRatio: '1 / 1',
                 borderRadius: '1.5rem',
                 margin: '0.1rem',
                 width: '20%',
-                height: '20%',
+                height: 'auto%',
                 alignContent: 'center',
                 justifyContent: 'center',
                 flexGrow: 1,
               }}
             >
-              {ingredient?.url && (
+              {ingredient?.icon && (
                 <img
-                  src={ingredient?.url}
+                  src={ingredient?.icon}
                   style={{
                     width: '100%',
                     height: 'auto',
@@ -106,6 +95,11 @@ const RecipePage = () => {
         <Stack spacing={2}>
           {data?.map((menu, i) => (
             <Card
+              onClick={() => {
+                navigate(`/recipe/detail`, {
+                  state: { menu },
+                });
+              }}
               key={i}
               sx={{
                 display: 'flex',
@@ -117,9 +111,9 @@ const RecipePage = () => {
                 },
                 background: '#fffaef',
                 border: {
-                  xs: '0.2rem solid #A1C8C4',
-                  sm: '0.4rem solid #A1C8C4',
-                  md: '0.3rem solid #A1C8C4',
+                  xs: '0.2rem solid #F68528',
+                  sm: '0.4rem solid #F68528',
+                  md: '0.3rem solid #F68528',
                 },
                 borderRadius: '30px',
                 gap: {

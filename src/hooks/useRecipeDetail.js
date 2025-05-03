@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import recipeApi from '../utils/recipeApi';
 
-const url = '/COOKRCP01/json/0/1/RCP_NM=';
+const url = '/COOKRCP01/json/0/1000/RCP_SEQ=';
 
 const fetchRecipe = ({ id, keyword, page, filter }) => {
   console.log(`fetchRecipe ${id} ${keyword} ${page} ${filter}`);

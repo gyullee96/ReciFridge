@@ -22,7 +22,7 @@ function App() {
         </Route>
         <Route path="recipe" element={<AppLayout />}>
           <Route index element={<RecipeSearchPage />} />
-          <Route path=":id" element={<RecipeDetail />} />
+          <Route path="detail" element={<RecipeDetail />} />
         </Route>
         <Route path="status" element={<IngredientsStatus />} />
       </Route>

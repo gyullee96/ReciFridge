@@ -3,12 +3,22 @@ import { create } from 'zustand';
 const globalStore = create((set) => ({
   ingredients: [
     {
-      name: '꼬막',
+      id: 1,
+      expiration: '2025-04-30',
       url: 'https://cdn.imweb.me/thumbnail/20230107/6f41120888517.png',
+      count: 2,
     },
     {
-      name: '두부강된장',
+      id: 2,
+      expiration: '2025-05-04',
       url: 'https://cdn.imweb.me/thumbnail/20230107/6f41120888517.png',
+      count: 1,
+    },
+    {
+      id: 3,
+      expiration: '2025-05-10',
+      url: 'https://cdn.imweb.me/thumbnail/20230107/6f41120888517.png',
+      count: 1,
     },
     // {
     //   name: '사과',
@@ -34,6 +44,13 @@ const globalStore = create((set) => ({
 
   addIngredients: (value) =>
     set((state) => ({ ingredients: [...state.ingredients, value] })),
+
+  removeIngredient: (idsToRemove) =>
+    set((state) => ({
+      ingredients: state.ingredients.filter(
+        (item) => !idsToRemove.includes(item.id),
+      ),
+    })),
 }));
 
 export default globalStore;
