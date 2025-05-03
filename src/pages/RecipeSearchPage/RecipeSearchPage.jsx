@@ -17,7 +17,7 @@ const RecipePage = () => {
   const gotoBackPage = () => navigate(-1);
   const { ingredients } = globalStore();
   const { data, isLoading, isError, error } =
-    useRecipesByIngredientsQuery('꼬막');
+    useRecipesByIngredientsQuery(ingredients);
 
   console.log('data:', data);
   if (isLoading) {
@@ -82,7 +82,7 @@ const RecipePage = () => {
               }}
             >
               <img
-                src={ingredient.url}
+                src={ingredient?.url}
                 style={{
                   width: '100%',
                   height: 'auto',
@@ -132,24 +132,26 @@ const RecipePage = () => {
                 },
               }}
             >
-              <CardMedia
-                component="img"
-                image={menu?.MANUAL_IMG01}
-                alt="요리"
-                sx={{
-                  width: {
-                    xs: '6rem',
-                    sm: '8rem',
-                    md: '9rem',
-                  },
-                  height: {
-                    xs: '6rem',
-                    sm: '8rem',
-                    md: '9rem',
-                  },
-                  borderRadius: { xs: '10rem', sm: '10rem', md: '10rem' },
-                }}
-              />
+              {menu?.MANUAL_IMG01 && (
+                <CardMedia
+                  component="img"
+                  image={menu?.MANUAL_IMG01}
+                  alt="요리"
+                  sx={{
+                    width: {
+                      xs: '6rem',
+                      sm: '8rem',
+                      md: '9rem',
+                    },
+                    height: {
+                      xs: '6rem',
+                      sm: '8rem',
+                      md: '9rem',
+                    },
+                    borderRadius: { xs: '10rem', sm: '10rem', md: '10rem' },
+                  }}
+                />
+              )}
               <CardContent>
                 <Stack sx={{ gap: { xs: '0rem', sm: '1rem', md: '1rem' } }}>
                   <Typography
@@ -160,15 +162,13 @@ const RecipePage = () => {
                   >
                     {menu.RCP_NM}
                   </Typography>
-                  <Typography
-                    component="div"
-                    sx={{
+                  <div
+                    style={{
                       fontSize: { xs: '1.2rem', sm: '1.5rem', md: '1.8rem' },
                       fontWeight: { xs: '500', sm: '500', md: '500' },
                     }}
-                    color="text.secondary"
                   >
-                    <Box
+                    <Typography
                       sx={{
                         display: '-webkit-box',
                         WebkitLineClamp: 2,
@@ -178,8 +178,8 @@ const RecipePage = () => {
                       }}
                     >
                       {menu?.RCP_PARTS_DTLS}
-                    </Box>
-                  </Typography>
+                    </Typography>
+                  </div>
                 </Stack>
               </CardContent>
             </Card>
