@@ -8,7 +8,7 @@ const fetchRecipe = (ingredient) => {
 };
 const useRecipesByIngredientsQuery = (ingredients) => {
   const queries = useQueries({
-    queries: ingredients.map((ingredient) => ({
+    queries: (ingredients ?? []).map((ingredient) => ({
       queryKey: ['ingredient', ingredient?.name],
       queryFn: () => fetchRecipe(ingredient),
       select: (res) => res?.data?.COOKRCP01?.row || [],

@@ -4,7 +4,7 @@ import {
   CardContent,
   CardMedia,
   Stack,
-  Typography
+  Typography,
 } from '@mui/material';
 import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
@@ -13,7 +13,7 @@ import useRecipesByIngredientsQuery from '../../hooks/useRecipesByIngredients';
 const RecipePage = () => {
   const navigate = useNavigate();
 
-  const { selectedIngredients: ingredients } = useLocation()?.state;
+  const { selectedIngredients: ingredients } = useLocation().state || {};
   console.log('selectedIngredients', ingredients);
   const { data, isLoading, isError, error } =
     useRecipesByIngredientsQuery(ingredients);
@@ -70,7 +70,6 @@ const RecipePage = () => {
                 justifyContent: 'center',
                 flexGrow: 1,
                 transition: 'transform 0.3s ease-in-out',
-
               }}
             >
               <img
@@ -97,8 +96,8 @@ const RecipePage = () => {
             <Card
               onClick={() => {
                 navigate(`/recipe/detail`, {
-                  state: { menu }
-                })
+                  state: { menu },
+                });
               }}
               key={i}
               sx={{
@@ -183,7 +182,7 @@ const RecipePage = () => {
           ))}
         </Stack>
       </Box>
-    </div >
+    </div>
   );
 };
 export default RecipePage;
