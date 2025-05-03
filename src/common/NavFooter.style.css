@@ -3,6 +3,7 @@
   justify-content: space-around;
   border-top: 8px solid #a1c8c4;
   padding: 10px;
+  width: 100%;
 }
 
 .nav-footer button {

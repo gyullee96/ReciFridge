@@ -1,36 +1,82 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.page-container {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    height: 100vh; /* 전체 화면 높이 */
+}
+
+.refridge-border:before {
+    position: absolute;
+    bottom: -18px;
+    left: 10%;
+    content: '';
+    width: 50px;
+    height: 10px;
+    background-color: #1b4a5e;
+  }
+  
+  .refridge-border:after {
+    position: absolute;
+    bottom: -18px;
+    right: 10%;
+    content: '';
+    width: 50px;
+    height: 10px;
+    background-color: #1b4a5e;
+  }
+
 .refridge-border{
-    width: 30%;
-    height: 90vh;
+    position: relative;
+    min-width: 370px;
+    width: 100%;
+    /* min-height: 650px; */
+    height: 100%;
     margin: 2% auto;
-    border: 10px solid #5a8c93;
-    border-radius: 7vh;
+    border: 10px solid #a1c8c4;
+    border-radius: 30px;
     overflow: hidden;
+    flex: 1; /* 남는 공간 차지 */
 }
 
 .main-top{
     display: flex;
     justify-content: center;
     align-items: column;
-    background-color: #b6ddda;
-    border-bottom: 10px solid #5a8c93;
+    background-color: #d4e8df;
+    border-bottom: 10px solid #a1c8c4;
+    height: 147px
     margin: 0;
 }
 
 .refridge-main {
-    width: 10vh;
+    width: 11vh;
     padding-top: 15%;
+    padding-right: 20%;
 }
 
 .main-logo {
-    padding-bottom: 5%;
-    font-size: 7vh;
+    padding-top: 5%;
+    padding-bottom: 2%;
+    font-size: 5vh;
+}
+
+.content{
+    height: calc(100vh - 300px);
 }
 
 .ingredient {
-    font-size: 3vh;
+    font-size: 30px;
+    height: 50%;
     margin: 0;
+    padding: 15px;
     background-color: #fffaef;
-    border-bottom: 10px solid #5a8c93;
+    border-bottom: 10px solid #a1c8c4;
 }
 
 .ingredient img {
@@ -50,10 +96,18 @@
 }
 
 .expiration {
-    font-size: 5vh;
+    font-size: 30px;
     margin: 0;
+    padding: 15px;
+    height: 50%;
     background-color: #fffaef;
-    border-bottom: 10px solid #5a8c93;
+}
+
+.expiration > div {
+    display: inline-block;
+    justify-content: center;
+    text-align: center;
+    width: 100%;
 }
 
 .main-bottom{
@@ -61,19 +115,5 @@
     justify-content: center;
     align-items: column;
     text-align: center;
-    padding: 1%
-}
-
-.main-bottom > div {
-    display: inline-block;
     width: 100%;
-}
-
-.main-bottom > div > div {
-    font-size: 3vh;
-    font-weight: 700;
-}
-
-.main-bottom img {
-    width: 7vh;
 }

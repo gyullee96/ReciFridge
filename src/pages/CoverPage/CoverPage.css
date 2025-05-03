@@ -1,22 +1,33 @@
+body { background-color: rgb(255, 255, 255) !important; }
+
 .coverpage {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    overflow: hidden; /* 커질 때 스크롤 막기 */
     text-align: center;
+    background-color: white;
 }
 
 img {
     width: 40vh;
     margin: 1%;
+    transition: transform 1s cubic-bezier(0.9, 0.7, 0.50, 0.205); /* 부드럽게 커지도록 */
+    transform-origin: center 70%; /* 커질 때 위로 향하게 함 */
 }
 
-h1 {
-    font-size: 5vh;
-    margin: 2% 40%;
+img.zoom {
+    transform: scale(1.8); /* 커지는 정도 (원하는 대로 조절) */
 }
 
-div {
+.welcome {
+    font-size: 8vh;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    margin: 8% 1%;
+}
+
+.tap {
     font-size: 3vh;
     margin: 1%;
 }
