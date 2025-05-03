@@ -6,13 +6,22 @@ import globalStore from '../../store/globalStore';
 import '../ingredientsStatus/IngredientsStatus.style.css';
 import './IngredientsSearch.style.css';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
-import { Button, Drawer, Snackbar } from '@mui/material';
+import {
+  Button,
+  CircularProgress,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  Drawer,
+  Snackbar,
+} from '@mui/material';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { TextField } from '@mui/material';
 import MuiAlert from '@mui/material/Alert';
-import ViewWeekIcon from '@mui/icons-material/ViewWeek';
+import BarcodeThumb from '../../assets/barcode-thumb.png';
 
 const IngredientsSearch = () => {
   const navigate = useNavigate();
@@ -23,9 +32,11 @@ const IngredientsSearch = () => {
   const [selectItem, setSelectItem] = useState(null);
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [date, setDate] = useState('');
-  const [count, setCount] = useState(1);
+  const [count, setCount] = useState(0);
   const [openSnackbar, setOpenSnackbar] = useState(false);
   const [snackbarMessage, setSnackbarMessage] = useState('');
+  const [isLoading, setIsLoading] = useState(true);
+  const [dialogOpen, setDialogOpen] = useState(false);
 
   const addIngredients = globalStore((state) => state.addIngredients);
 
@@ -40,6 +51,7 @@ const IngredientsSearch = () => {
 
   useEffect(() => {
     setKeywordsList(keywordData.keyword_db);
+    setIsLoading(false);
   }, []);
 
   useEffect(() => {
@@ -67,9 +79,8 @@ const IngredientsSearch = () => {
         <Button
           onClick={() => navigate('/ingredients/barcode')}
           className="button-barcode"
-          title="바코드 검색"
         >
-          <ViewWeekIcon />
+          <img src={BarcodeThumb} />
         </Button>
       </div>
       <div className="filter">
@@ -82,16 +93,20 @@ const IngredientsSearch = () => {
       </div>
 
       <ul className="status-list">
-        {filteredItems.map((item) => (
-          <li
-            key={item.id}
-            onClick={() => handleSelect(item.id)}
-            className={selectItem === item.id ? 'li-selected' : ''}
-          >
-            <img src={item.icon} alt={item.keyword} />
-            <div className="ingredients-name">{item.keyword}</div>
-          </li>
-        ))}
+        {isLoading ? (
+          <CircularProgress sx={{ color: '709EA3', alignSelf: 'center' }} />
+        ) : (
+          filteredItems.map((item) => (
+            <li
+              key={item.id}
+              onClick={() => handleSelect(item.id)}
+              className={selectItem === item.id ? 'li-selected' : ''}
+            >
+              <img src={item.icon} alt={item.keyword} />
+              <div className="ingredients-name">{item.keyword}</div>
+            </li>
+          ))
+        )}
       </ul>
 
       <hr className="hr-style" />
@@ -139,7 +154,8 @@ const IngredientsSearch = () => {
           variant="contained"
           className="button-add"
           onClick={() => {
-            if (!selectItem || !date || !count) return;
+            if (count === 0 || date === '' || (count === 0 && date === ''))
+              return setDialogOpen(true);
 
             const item = keywordsList.find((k) => k.id === selectItem);
 
@@ -153,7 +169,7 @@ const IngredientsSearch = () => {
 
             setSnackbarMessage(`${item.keyword} 재료를 담았습니다!`);
             setIsDrawerOpen(false); // 닫기
-            setCount(1); // 초기화
+            setCount(0); // 초기화
             setDate('');
             setSelectItem(null);
             setOpenSnackbar(true);
@@ -165,7 +181,7 @@ const IngredientsSearch = () => {
 
       <Snackbar
         open={openSnackbar}
-        autoHideDuration={3000}
+        autoHideDuration={1500}
         onClose={handleCloseSnackbar}
         anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
       >
@@ -182,6 +198,26 @@ const IngredientsSearch = () => {
           {snackbarMessage}
         </MuiAlert>
       </Snackbar>
+
+      <Dialog
+        open={dialogOpen}
+        onClose={() => setDialogOpen(false)}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+            {count === 0 && date === ''
+              ? '수량과 유통기한을 입력하세요'
+              : count === 0
+                ? '수량을 입력하세요'
+                : '유통기한을 입력하세요'}
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={() => setDialogOpen(false)}>확인</Button>
+        </DialogActions>
+      </Dialog>
     </div>
   );
 };

@@ -1,6 +1,6 @@
 import FreeBreakfastIcon from '@mui/icons-material/FreeBreakfast';
 import Button from '@mui/material/Button';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import keywordData from '../../../keyword.json';
 import NavFooter from '../../common/NavFooter';
@@ -12,7 +12,6 @@ const IngredientsStatus = () => {
   const navigate = useNavigate();
   const [selectedItems, setSelectedItems] = useState([]);
   const [searchText, setSearchText] = useState('');
-  const [openedInfos, setOpenedInfos] = useState([]);
 
   const ingredients = globalStore((state) => state.ingredients);
   // keyword.json의 데이터를 id로 매핑
@@ -35,8 +34,6 @@ const IngredientsStatus = () => {
     .sort((a, b) => new Date(a.expiration) - new Date(b.expiration));
 
   const handleSelect = (id) => {
-    // info layer가 열려있으면 클릭 무시
-    if (openedInfos.includes(id)) return;
     setSelectedItems((prevSelected) =>
       prevSelected.includes(id)
         ? prevSelected.filter((i) => i !== id)
@@ -75,15 +72,6 @@ const IngredientsStatus = () => {
     return { text, className };
   };
 
-  const handleInfo = (index) => {
-    setOpenedInfos(
-      (prev) =>
-        prev.includes(index)
-          ? prev.filter((i) => i !== index) // 이미 열려 있으면 닫기
-          : [...prev, index], // 아니면 열기
-    );
-  };
-
   useEffect(() => {
     console.log('담겨있는재료', selectedItems);
   }, [selectedItems]);
@@ -91,39 +79,6 @@ const IngredientsStatus = () => {
   useEffect(() => {
     console.log('스토어에서 가져온 ingredients:', ingredients);
   }, [ingredients]);
-
-  function LongPressItem({ onClick, onLongPress, children, className }) {
-    const timerRef = useRef(null);
-    const isLongPress = useRef(false);
-
-    const handleMouseDown = () => {
-      isLongPress.current = false;
-      timerRef.current = setTimeout(() => {
-        isLongPress.current = true;
-        onLongPress(); // 길게 누름 감지
-      }, 600); // 600ms 이상이면 길게 누름으로 인식
-    };
-
-    const handleMouseUp = () => {
-      clearTimeout(timerRef.current);
-      if (!isLongPress.current) {
-        onClick(); // 짧게 누르면 일반 클릭
-      }
-    };
-
-    return (
-      <li
-        className={className}
-        onMouseDown={handleMouseDown}
-        onMouseUp={handleMouseUp}
-        // onMouseLeave={handleMouseUp}
-        onTouchStart={handleMouseDown}
-        onTouchEnd={handleMouseUp}
-      >
-        {children}
-      </li>
-    );
-  }
 
   return (
     <div className="ingredients-status-wrap">
@@ -149,18 +104,15 @@ const IngredientsStatus = () => {
               {filteredItems.map((item) => {
                 const { text, className } = getDDayInfo(item.expiration);
                 return (
-                  <LongPressItem
+                  <li
                     key={item.id}
                     onClick={() => handleSelect(item.id)}
-                    onLongPress={() => handleInfo(item.id)}
                     className={`${className} ${selectedItems.includes(item.id) ? 'li-selected' : ''}`}
                   >
                     <span className={className}>{text}</span>
                     <img src={item.icon} alt={item.keyword} />
                     <div className="ingredients-name">{item.keyword}</div>
-                    <div
-                      className={`layer-info ${openedInfos.includes(item.id) ? 'show' : ''}`}
-                    >
+                    <div className="layer-info">
                       <div>재고수량 : {item.count}개</div>
                       <div>
                         유통기한 :
@@ -168,7 +120,7 @@ const IngredientsStatus = () => {
                         {item.expiration}
                       </div>
                     </div>
-                  </LongPressItem>
+                  </li>
                 );
               })}
             </ul>
