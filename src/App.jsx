@@ -7,6 +7,7 @@ import Home from './pages/HomePage/Home';
 import RecipeDetail from './pages/RecipeDetailPage/RecipeDetail';
 import RecipeSearchPage from './pages/RecipeSearchPage/RecipeSearchPage';
 import IngredientsSearch from './pages/ingredientsSearch/IngredientsSearch';
+import IngredientsBarcodeResult from './pages/ingredientsSearch/ingredientsBarcodeResult';
 import IngredientsBarcodeSearch from './pages/ingredientsSearch/ingredientsBarcodeSearch';
 import IngredientsStatus from './pages/ingredientsStatus/IngredientsStatus';
 
@@ -19,6 +20,7 @@ function App() {
         <Route path="ingredients">
           <Route path="barcode" element={<IngredientsBarcodeSearch />} />
           <Route path="search" element={<IngredientsSearch />} />
+          <Route path="result" element={<IngredientsBarcodeResult />} />
         </Route>
         <Route path="recipe" element={<AppLayout />}>
           <Route index element={<RecipeSearchPage />} />

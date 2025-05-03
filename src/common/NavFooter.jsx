@@ -1,10 +1,10 @@
+import HomeIcon from '@mui/icons-material/Home';
+import SearchIcon from '@mui/icons-material/Search';
+import Button from '@mui/material/Button';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import BarcodeThumb from '../assets/barcode-thumb-bottom.png';
 import './NavFooter.style.css';
-import SearchIcon from '@mui/icons-material/Search';
-import ViewWeekIcon from '@mui/icons-material/ViewWeek';
-import HomeIcon from '@mui/icons-material/Home';
-import Button from '@mui/material/Button';
 
 const NavFooter = () => {
   const navigate = useNavigate();
@@ -14,12 +14,12 @@ const NavFooter = () => {
         <HomeIcon />
         <div>Home</div>
       </Button>
-      <Button variant="text" onClick={() => navigate('/search')}>
+      <Button variant="text" onClick={() => navigate('/ingredients/search')}>
         <SearchIcon />
         Keyword
       </Button>
-      <Button variant="text" onClick={() => navigate('/recipe')}>
-        <ViewWeekIcon />
+      <Button variant="text" onClick={() => navigate('/ingredients/barcode')}>
+        <img src={BarcodeThumb} alt="" style={{ width: '23.99px' }} />
         Barcode
       </Button>
     </nav>
