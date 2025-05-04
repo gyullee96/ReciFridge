@@ -4,7 +4,9 @@
   padding: 15px;
   width: 100%;
   height: 100vh; /* 전체 화면 높이 */
+  -webkit-animation-duration: 0.3s;
   animation-duration: 0.3s;
+  -webkit-animation-name: showFadeIn;
   animation-name: showFadeIn;
   background-color: #fffaef;
 }
@@ -55,12 +57,12 @@
 }
 
 .refridge-main {
-  width: clamp(4rem, 5vw, 5rem);
+  width: clamp(2.3rem, 3.5vw, 5rem);
 }
 
 .main-logo {
   color: #1b4a5e;
-  font-size: clamp(2.8rem, 3.5vw, 4rem);
+  font-size: clamp(2.3rem, 3.5vw, 4rem);
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
@@ -68,27 +70,26 @@
   flex: 1;
   display: flex;
   flex-direction: column;
-  flex-direction: column;
 }
 
 .ingredient {
+  display: flex;
+  flex-direction: column;
   position: relative;
   font-size: clamp(1.3rem, 2.8vw, 2.3rem);
   flex: 1;
   padding: 15px;
   background-color: #fffaef;
-  border-bottom: 8px solid #a1c8c4;
-  cursor: pointer;
-}
-
-.ingredient img {
-  width: 25%;
-  width: 25%;
+  border-bottom: 10px solid #a1c8c4;
 }
 
 .ingredient > div {
   text-align: center;
   width: 100%;
+  color: #1b4a5e;
+  font-weight: 500;
+  margin-bottom: '1rem';
+  font-size: clamp(1.8rem, 2.3vw, 2.3rem);
 }
 
 .ingredient:before {
@@ -106,11 +107,22 @@
 }
 
 .ingredient:hover::before {
+  -webkit-animation: fillFromLeft 1s forwards;
   animation: fillFromLeft 1s forwards;
 }
 
 .ingredient:hover::after {
   opacity: 1;
+}
+
+@-webkit-keyframes showFadeIn {
+  from {
+    opacity: 0.5;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
 
 @keyframes showFadeIn {
@@ -137,6 +149,12 @@
   background-image: url('data:image/svg+xml,%3Csvg%20aria-hidden%3D%22true%22%20focusable%3D%22false%22%20data-prefix%3D%22far%22%20data-icon%3D%22angle-right%22%20role%3D%22img%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20320%20512%22%3E%3Cpath%20fill%3D%22%23ffffff%22%20d%3D%22M273%20239c9.4%209.4%209.4%2024.6%200%2033.9L113%20433c-9.4%209.4-24.6%209.4-33.9%200s-9.4-24.6%200-33.9l143-143L79%20113c-9.4-9.4-9.4-24.6%200-33.9s24.6-9.4%2033.9%200L273%20239z%22/%3E%3C/svg%3E');
 }
 
+@-webkit-keyframes fillFromLeft {
+  to {
+    width: 100%;
+  }
+}
+
 @keyframes fillFromLeft {
   to {
     width: 100%;
@@ -159,6 +177,14 @@
   justify-content: center;
   text-align: center;
   width: 100%;
+  display: inline-block;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
+  color: #1b4a5e;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  font-size: clamp(1.8rem, 2.3vw, 2.3rem);
 }
 
 .main-bottom {
@@ -167,4 +193,72 @@
   align-items: column;
   text-align: center;
   width: 100%;
+}
+.home-status-list {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  padding: 12px;
+  gap: 25px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  max-height: calc(100vh - 220px);
+}
+.home-status-list-li {
+  width: 50%;
+  height: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-width: 100px;
+  align-items: center;
+  align-items: center;
+  align-content: center;
+  aspect-ratio: 1 / 1;
+  padding: 12px;
+}
+
+.expiration-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+}
+.expiration-list li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  /* border: 2px solid ; */
+  border-radius: 10px;
+  padding: 0.1rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  margin: 0.2rem;
+  background-color: rgba(252, 199, 77, 0.5);
+  margin-right: clamp(1rem, 4vw, 19rem);
+  margin-left: clamp(1rem, 4vw, 19rem);
+}
+
+.expiration-list-ingredient-info {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: clamp(0rem, 1vw, 1rem);
+}
+.expiration-list-ingredient-info img {
+  width: 3rem;
+  height: 3rem;
+}
+
+@media (max-width: 768px) {
+  .expiration-list li {
+    padding: 0.1rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    margin: 0.1rem;
+    margin-right: clamp(1rem, 4vw, 19rem);
+    margin-left: clamp(1rem, 4vw, 19rem);
+  }
 }

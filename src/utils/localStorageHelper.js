@@ -4,8 +4,7 @@ export function getIngredients() {
   try {
     const data = JSON.parse(localStorage.getItem(ingredientKey));
     return data ? data : [];
-  } 
-  catch (e) {
+  } catch (e) {
     console.error('Error parsing data from localStorage', e);
     return [];
   }
@@ -20,7 +19,7 @@ export function addIngredient(ingredient) {
 export function removeIngredients(removeItems) {
   const ingredients = getIngredients();
   const updatedIngredients = ingredients.filter(
-    ingredient => !removeItems.includes(ingredient.id)
+    (ingredient) => !removeItems.includes(ingredient.id),
   );
   localStorage.setItem(ingredientKey, JSON.stringify(updatedIngredients));
 }
