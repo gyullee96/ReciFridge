@@ -1,119 +1,112 @@
-body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
 .page-container {
-    display: flex;
-    flex-direction: column;
-    padding: 20px;
-    height: 100vh; /* 전체 화면 높이 */
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  height: 100vh;
 }
 
 .refridge-border:before {
-    position: absolute;
-    bottom: -18px;
-    left: 10%;
-    content: '';
-    width: 50px;
-    height: 10px;
-    background-color: #1b4a5e;
-  }
-  
-  .refridge-border:after {
-    position: absolute;
-    bottom: -18px;
-    right: 10%;
-    content: '';
-    width: 50px;
-    height: 10px;
-    background-color: #1b4a5e;
-  }
-
-.refridge-border{
-    position: relative;
-    min-width: 370px;
-    width: 100%;
-    /* min-height: 650px; */
-    height: 100%;
-    margin: 2% auto;
-    border: 10px solid #a1c8c4;
-    border-radius: 30px;
-    overflow: hidden;
-    flex: 1; /* 남는 공간 차지 */
+  position: absolute;
+  bottom: -18px;
+  left: 10%;
+  content: '';
+  width: 50px;
+  height: 10px;
+  background-color: #1b4a5e;
 }
 
-.main-top{
-    display: flex;
-    justify-content: center;
-    align-items: column;
-    background-color: #d4e8df;
-    border-bottom: 10px solid #a1c8c4;
-    height: 147px
-    margin: 0;
+.refridge-border:after {
+  position: absolute;
+  bottom: -18px;
+  right: 10%;
+  content: '';
+  width: 50px;
+  height: 10px;
+  background-color: #1b4a5e;
+}
+
+.refridge-border {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 100%;
+  margin: 2% auto;
+  border: 10px solid #a1c8c4;
+  border-radius: 30px;
+  overflow: hidden;
+  flex: 1;
+}
+
+.main-top {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #d4e8df;
+  border-bottom: 10px solid #a1c8c4;
+  padding: 1.5rem;
 }
 
 .refridge-main {
-    width: 11vh;
-    padding-top: 15%;
-    padding-right: 20%;
+  width: clamp(4rem, 5vw, 5rem);
 }
 
 .main-logo {
-    padding-top: 5%;
-    padding-bottom: 2%;
-    font-size: 5vh;
+  font-size: clamp(2.8rem, 3.5vw, 4rem);
 }
 
-.content{
-    height: calc(100vh - 300px);
+.content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  flex-direction: column;
 }
 
 .ingredient {
-    font-size: 30px;
-    height: 50%;
-    margin: 0;
-    padding: 15px;
-    background-color: #fffaef;
-    border-bottom: 10px solid #a1c8c4;
+  font-size: clamp(1.3rem, 2.8vw, 2.3rem);
+  flex: 1;
+  padding: 15px;
+  background-color: #fffaef;
+  border-bottom: 10px solid #a1c8c4;
 }
 
 .ingredient img {
-    width: 25%;
+  width: 25%;
 }
 
 .ingredient > div {
-    display: inline-block;
-    justify-content: center;
-    text-align: center;
-    width: 100%;
+  display: inline-block;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
 }
 
 .ingredient:hover {
-    background-color: rgba(40, 173, 20, 0.392);
-    background: linear-gradient(to right, rgba(40, 173, 20, 0.053), rgba(40, 173, 20, 0.53));
+  background-color: rgba(40, 173, 20, 0.392);
+  background: linear-gradient(
+    to right,
+    rgba(40, 173, 20, 0.053),
+    rgba(40, 173, 20, 0.53)
+  );
 }
 
 .expiration {
-    font-size: 30px;
-    margin: 0;
-    padding: 15px;
-    height: 50%;
-    background-color: #fffaef;
+  flex: 1;
+  font-size: clamp(1.3rem, 2.8vw, 2.3rem);
+  padding: 15px;
+  background-color: #fffaef;
 }
 
 .expiration > div {
-    display: inline-block;
-    justify-content: center;
-    text-align: center;
-    width: 100%;
+  display: inline-block;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
 }
 
-.main-bottom{
-    display: flex;
-    justify-content: center;
-    align-items: column;
-    text-align: center;
-    width: 100%;
+.main-bottom {
+  display: flex;
+  justify-content: center;
+  align-items: column;
+  text-align: center;
+  width: 100%;
 }

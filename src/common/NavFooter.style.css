@@ -12,4 +12,5 @@
   flex-direction: column;
   color: #56868d;
   font-weight: 600;
+  flex: 1;
 }
