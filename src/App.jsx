@@ -4,8 +4,9 @@ import './App.css';
 import AppLayout from './layout/AppLayout';
 import CoverPage from './pages/CoverPage/CoverPage';
 import Home from './pages/HomePage/Home';
-import IngredientsSearch from './pages/IngredientsSearch/IngredientsSearch';
-import IngredientsStatus from './pages/IngredientsStatus/IngredientsStatus';
+import IngredientsBarcodeSearch from './pages/ingredientsSearch/IngredientsBarcodeSearch';
+import IngredientsSearch from './pages/ingredientsSearch/IngredientsSearch';
+import IngredientsStatus from './pages/ingredientsStatus/IngredientsStatus';
 import RecipeDetail from './pages/RecipeDetailPage/RecipeDetail';
 import RecipeSearchPage from './pages/RecipeSearchPage/RecipeSearchPage';
 
