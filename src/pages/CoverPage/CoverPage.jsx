@@ -16,16 +16,18 @@ const coverPage = () => {
   };
 
   return (
-    <div className="coverpage">
-      <h1 className="welcome">Welcome to ReciFridge</h1>
-      <img
-        src="/fridge-cover-remove.png"
-        alt=""
-        onClick={handleClick}
-        className={`fridge-img ${isZooming ? 'zoom' : ''}`}
-        style={{ cursor: 'pointer' }}
-      />
-      <div className="tap">Tap to open</div>
+    <div className="coverpage-wrap">
+      <div className="coverpage">
+        <h1 className="welcome">Welcome to ReciFridge</h1>
+        <img
+          src="/fridge-cover-remove.png"
+          alt=""
+          onClick={handleClick}
+          className={`fridge-img ${isZooming ? 'zoom' : ''}`}
+          style={{ cursor: 'pointer' }}
+        />
+        <div className="tap">Tap to open</div>
+      </div>
     </div>
   );
 };

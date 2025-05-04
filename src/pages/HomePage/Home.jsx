@@ -29,7 +29,7 @@ const Home = () => {
         </div>
         <div className="content">
           <div className="ingredient" onClick={() => navigate('/status')}>
-            <div>
+            <div style={{ fontWeight: 700, marginBottom: '1rem' }}>
               My items:
               {ingredients
                 ? ingredients.reduce((total, item) => total + item.count, 0)
@@ -48,7 +48,9 @@ const Home = () => {
             </ul>
           </div>
           <div className="expiration">
-            <div>소비기한 임박</div>
+            <div style={{ fontWeight: 700, marginBottom: '1rem' }}>
+              소비기한 임박
+            </div>
             <ul>
               {ingredients.map((item) => {
                 const dDay = calculateDday(item.expiration);
