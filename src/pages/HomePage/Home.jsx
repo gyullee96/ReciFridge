@@ -29,7 +29,7 @@ const Home = () => {
   const ingredientBanner = mergedIngredients.slice(0, 3);
   const expiringSoon = [...mergedIngredients]
     .sort((a, b) => new Date(a.expiration) - new Date(b.expiration))
-    .slice(0, 6);
+    .slice(0, 4);
 
   return (
     <div className="page-container">
@@ -42,12 +42,10 @@ const Home = () => {
         </div>
         <div className="content">
           <div className="ingredient" onClick={() => navigate('/status')}>
-            <div style={{ fontWeight: 500, marginBottom: '1rem' }}>
-              My Fridge : {ingredients?.length} Items
-            </div>
-            <ul className="status-list">
+            <div>My Fridge : {ingredients?.length} Items</div>
+            <ul className="home-status-list">
               {ingredientBanner.map((item) => (
-                <li key={item.id} className="status-list-li">
+                <li key={item.id} className="home-status-list-li">
                   <img src={item.icon} />
                   <div>{item.keyword}</div>
                 </li>
@@ -55,7 +53,14 @@ const Home = () => {
             </ul>
           </div>
           <div className="expiration">
-            <div style={{ fontWeight: 600, marginBottom: '1rem' }}>
+            <div
+              style={{
+                fontColor: '#1b4a5e',
+                fontWeight: 600,
+                marginBottom: '1rem',
+                fontSize: 'clamp(1.8rem, 2.3vw, 2.3rem',
+              }}
+            >
               소비기한 임박
             </div>
             <ul className="expiration-list">
@@ -69,11 +74,31 @@ const Home = () => {
                       : `D+${Math.abs(dDay)}`;
                 return (
                   <li key={`exp-${item.id}`}>
-                    <span className="expiration-list-ingre-info">
+                    <span className="expiration-list-ingredient-info">
                       <img src={item.icon} alt={item.keyword} />
-                      <div>{item.keyword}</div>
+                      <div
+                        style={{
+                          fontSize: 'clamp(1.3rem, 2vw, 2rem)',
+                          marginRight: 'clamp(0rem, 0vw, 0.1rem)',
+                        }}
+                      >
+                        {item.keyword}
+                      </div>
+                      <div
+                        style={{
+                          color: '#343434',
+                          fontSize: 'clamp(1rem, 1.3vw, 1.8rem)',
+                        }}
+                      >
+                        ({item.count}개)
+                      </div>
                     </span>
-                    <div>{dDayText}</div>
+                    <div
+                      className="dancing-script-300"
+                      style={{ fontSize: 'clamp(1.5rem, 2vw, 1.8rem)' }}
+                    >
+                      {dDayText}
+                    </div>
                   </li>
                 );
               })}

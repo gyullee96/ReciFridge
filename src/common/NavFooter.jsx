@@ -10,7 +10,7 @@ const NavFooter = () => {
   const navigate = useNavigate();
   return (
     <nav className="nav-footer">
-      <Button variant="text" onClick={() => navigate('/')}>
+      <Button variant="text" onClick={() => navigate('/home')}>
         <HomeIcon />
         <div>Home</div>
       </Button>
