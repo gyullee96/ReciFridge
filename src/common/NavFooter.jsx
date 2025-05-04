@@ -1,10 +1,10 @@
+import HomeIcon from '@mui/icons-material/Home';
+import SearchIcon from '@mui/icons-material/Search';
+import Button from '@mui/material/Button';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import './NavFooter.style.css';
-import SearchIcon from '@mui/icons-material/Search';
-import HomeIcon from '@mui/icons-material/Home';
-import Button from '@mui/material/Button';
 import BarcodeThumb from '../assets/barcode-thumb-bottom.png';
+import './NavFooter.style.css';
 
 const NavFooter = () => {
   const navigate = useNavigate();

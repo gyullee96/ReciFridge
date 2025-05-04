@@ -17,11 +17,13 @@ const globalStore = create((get) => ({
 
   removeIngredients: (removeItems) => {
     let ingredients = [];
-    ingredients = ingredients.filter((ingredient) => !removeItems.includes(ingredient.id));
+    ingredients = ingredients.filter(
+      (ingredient) => !removeItems.includes(ingredient.id),
+    );
     localStorage.setItem(get().ingredientKey, JSON.stringify(ingredients));
-  
+
     console.log('localStorage, delete', ingredients);
-  }
+  },
 }));
 
 export default globalStore;

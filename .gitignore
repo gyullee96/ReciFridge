@@ -25,3 +25,6 @@ dist-ssr
 
 .env
 .nvmrc
+
+package-lock.json
+vite.config.js

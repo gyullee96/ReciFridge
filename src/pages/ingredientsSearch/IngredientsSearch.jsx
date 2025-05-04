@@ -1,5 +1,3 @@
-/* eslint-disable prettier/prettier */
-import React, { useEffect, useState } from 'react';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import {
   Button,
@@ -16,13 +14,14 @@ import MuiAlert from '@mui/material/Alert';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import FreeBreakfastIcon from '@mui/icons-material/FreeBreakfast';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import keywordData from '../../../keyword.json';
-import { addIngredient } from '../../utils/localStorageHelper';
-import '../ingredientsStatus/IngredientsStatus.style.css';
-import './IngredientsSearch.style.css';
-import FreeBreakfastIcon from '@mui/icons-material/FreeBreakfast';
 import BarcodeThumb from '../../assets/barcode-thumb.png';
+import { addIngredient } from '../../utils/localStorageHelper';
+import '../IngredientsStatus/IngredientsStatus.style.css';
+import './IngredientsSearch.style.css';
 
 const IngredientsSearch = () => {
   const navigate = useNavigate();
