@@ -47,7 +47,7 @@ const IngredientsBarcodeResult = (props) => {
       </div>
       <div style={{ border: 'none', borderTop: '1.0rem solid' }} />
 
-      {Number.isFinite('abc') && (
+      {Number.isFinite(product.productPrice) && (
         <div
           style={{
             width: '80%',

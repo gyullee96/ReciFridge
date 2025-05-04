@@ -98,9 +98,11 @@ const IngredientsBarcodeSearch = () => {
           )}
 
           {!isScanning && (
-            <Button variant="contained" onClick={showScanner}>
-              바코드 다시 읽기
-            </Button>
+            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+              <Button variant="contained" onClick={showScanner}>
+                바코드 다시 읽기
+              </Button>
+            </div>
           )}
           {isLoading && <p>로딩 중...</p>}
           {error?.message && (
