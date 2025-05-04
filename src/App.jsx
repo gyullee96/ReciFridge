@@ -19,7 +19,6 @@ function App() {
         <Route path="ingredients">
           <Route path="barcode" element={<IngredientsBarcodeSearch />} />
           <Route path="search" element={<IngredientsSearch />} />
-          <Route path="result" element={<IngredientsBarcodeResult />} />
         </Route>
         <Route path="recipe" element={<AppLayout />}>
           <Route index element={<RecipeSearchPage />} />
