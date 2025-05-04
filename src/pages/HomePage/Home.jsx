@@ -26,7 +26,7 @@ const Home = () => {
       keyword: keywordMatch?.keyword || '',
     };
   });
-  const ingredientBanner = mergedIngredients.slice(0, 3);
+  const ingredientBanner = mergedIngredients.slice(0, 4);
   const expiringSoon = [...mergedIngredients]
     .sort((a, b) => new Date(a.expiration) - new Date(b.expiration))
     .slice(0, 4);
@@ -53,16 +53,7 @@ const Home = () => {
             </ul>
           </div>
           <div className="expiration">
-            <div
-              style={{
-                fontColor: '#1b4a5e',
-                fontWeight: 600,
-                marginBottom: '1rem',
-                fontSize: 'clamp(1.8rem, 2.3vw, 2.3rem',
-              }}
-            >
-              소비기한 임박
-            </div>
+            <div>Notice</div>
             <ul className="expiration-list">
               {expiringSoon.map((item) => {
                 const dDay = calculateDday(item.expiration);
