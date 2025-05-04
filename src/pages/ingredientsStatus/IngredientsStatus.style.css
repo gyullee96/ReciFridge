@@ -7,7 +7,7 @@
 .ingredients-status-wrap {
   width: 100%;
   height: 100vh;
-  padding: 20px;
+  padding: 15px;
   background-color: #fffaef;
 }
 
@@ -196,7 +196,7 @@
   border: 5px solid #709ea3;
 }
 
-.status-list li.li-selected>span {
+.status-list li.li-selected > span {
   top: -10px;
   right: -10px;
 }

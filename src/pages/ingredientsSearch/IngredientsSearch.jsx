@@ -14,6 +14,7 @@ import MuiAlert from '@mui/material/Alert';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import FreeBreakfastIcon from '@mui/icons-material/FreeBreakfast';
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import keywordData from '../../../keyword.json';
@@ -92,6 +93,11 @@ const IngredientsSearch = () => {
       <ul className="status-list">
         {isLoading ? (
           <CircularProgress sx={{ color: '709EA3', alignSelf: 'center' }} />
+        ) : filteredItems.length < 1 ? (
+          <p className="no-ingredients">
+            <FreeBreakfastIcon sx={{ color: '#B6DDDA', fontSize: 54 }} />
+            검색한 재료가 없습니다.
+          </p>
         ) : (
           filteredItems.map((item) => (
             <li

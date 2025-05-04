@@ -48,7 +48,7 @@ const IngredientsBarcodeSearch = () => {
           className="button-back"
           onClick={gotoBackPage}
         />
-        Keyword Search
+        Barcode Search
         <Button
           onClick={() => navigate('/ingredients/search')}
           className="button-barcode"

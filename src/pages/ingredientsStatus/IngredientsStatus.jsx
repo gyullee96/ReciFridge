@@ -1,11 +1,14 @@
-import FreeBreakfastIcon from '@mui/icons-material/FreeBreakfast';
-import Button from '@mui/material/Button';
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import keywordData from '../../../keyword.json';
 import NavFooter from '../../common/NavFooter';
-import { getIngredients, removeIngredients } from '../../utils/localStorageHelper';
+import {
+  getIngredients,
+  removeIngredients,
+} from '../../utils/localStorageHelper';
 import './IngredientsStatus.style.css';
+import FreeBreakfastIcon from '@mui/icons-material/FreeBreakfast';
+import Button from '@mui/material/Button';
 
 const IngredientsStatus = () => {
   // console.log('keywordData?', keywordData);
@@ -89,7 +92,7 @@ const IngredientsStatus = () => {
             <p className="no-ingredients">
               <FreeBreakfastIcon sx={{ color: '#B6DDDA', fontSize: 54 }} />
               <br />
-              냉장고에 담겨있는 재료가 없습니다.
+              재료가 없습니다.
             </p>
           ) : (
             <ul className="status-list">
