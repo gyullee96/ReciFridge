@@ -1,0 +1,48 @@
+.ingredients {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.ingredients-container {
+  padding: 20px;
+  background-color: #fffaef;
+  padding-top: 10px;
+  width: 100%;
+}
+
+.ingredient-container-br-top {
+  border: none;
+  border-top: 0.6rem solid #a1c8c4;
+  margin-bottom: 1rem;
+}
+.ingredient-container-br-bottom {
+  border: none;
+  border-top: 0.6rem solid #a1c8c4;
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+}
+
+.ingredient-box {
+  aspect-ratio: 1 / 1;
+  border-radius: 1.5rem;
+  margin: 0.1rem;
+  width: 20%;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-grow: 1;
+  background-color: #fffaef;
+}
+.ingredient-box.has-icon {
+  background-color: #efeace;
+}
+.info-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}

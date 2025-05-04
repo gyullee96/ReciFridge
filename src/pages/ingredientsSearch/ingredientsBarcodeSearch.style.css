@@ -1,0 +1,41 @@
+.ingredients-search-wrap {
+  height: 100vh;
+  padding: 20px;
+  background-color: #fffaef;
+}
+.title-top {
+  position: relative;
+  height: 50px;
+  line-height: 1.2;
+  text-align: center;
+  font-size: 24px;
+  color: #56868d;
+  font-weight: 600;
+}
+
+.title-top .button-back {
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin-bottom: 10px;
+  color: #000;
+}
+
+.title-top .button-search {
+  position: absolute;
+  top: 0;
+  right: -10px;
+  cursor: pointer;
+  color: #000;
+}
+
+.title-top button:hover {
+  color: #56868d;
+}
+
+.search {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}

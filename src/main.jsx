@@ -13,10 +13,10 @@ import './index.css';
 const queryClient = new QueryClient();
 
 createRoot(document.getElementById('root')).render(
-    <QueryClientProvider client={queryClient}>
-        <BrowserRouter>
-            <App />
-            <ReactQueryDevtools initialIsOpen={false} />
-        </BrowserRouter>
-    </QueryClientProvider>,
+  <QueryClientProvider client={queryClient}>
+    <BrowserRouter>
+      <App />
+      <ReactQueryDevtools initialIsOpen={false} />
+    </BrowserRouter>
+  </QueryClientProvider>,
 );

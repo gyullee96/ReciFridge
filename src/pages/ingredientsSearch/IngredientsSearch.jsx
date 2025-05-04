@@ -1,5 +1,5 @@
-/* eslint-disable prettier/prettier */
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
+import FreeBreakfastIcon from '@mui/icons-material/FreeBreakfast';
 import {
   Button,
   CircularProgress,
@@ -20,7 +20,7 @@ import { useNavigate } from 'react-router-dom';
 import keywordData from '../../../keyword.json';
 import BarcodeThumb from '../../assets/barcode-thumb.png';
 import { addIngredient } from '../../utils/localStorageHelper';
-import '../ingredientsStatus/IngredientsStatus.style.css';
+import '../IngredientsStatus/IngredientsStatus.style.css';
 import './IngredientsSearch.style.css';
 
 const IngredientsSearch = () => {
@@ -93,6 +93,11 @@ const IngredientsSearch = () => {
       <ul className="status-list">
         {isLoading ? (
           <CircularProgress sx={{ color: '709EA3', alignSelf: 'center' }} />
+        ) : filteredItems.length < 1 ? (
+          <p className="no-ingredients">
+            <FreeBreakfastIcon sx={{ color: '#B6DDDA', fontSize: 54 }} />
+            검색한 재료가 없습니다.
+          </p>
         ) : (
           filteredItems.map((item) => (
             <li
