@@ -39,9 +39,12 @@ const AppLayout = ({ title }) => {
             justifyContent: 'center',
             width: '100%',
             textAlign: 'center',
+            color: '#56868d',
+            fontSize: 24,
+            fontWeight: 600,
           }}
         >
-          Test
+          Recipe List
         </div>
       </div>
       <Outlet />
