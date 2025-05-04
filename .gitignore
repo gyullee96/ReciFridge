@@ -25,5 +25,3 @@ dist-ssr
 
 .env
 .nvmrc
-
-vite.config.js
