@@ -82,6 +82,7 @@
   padding: 15px;
   background-color: #fffaef;
   border-bottom: 8px solid #a1c8c4;
+  cursor: pointer;
 }
 
 .ingredient > div {
