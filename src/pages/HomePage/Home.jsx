@@ -1,14 +1,14 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import keywordData from '../../../keyword.json';
 import NavFooter from '../../common/NavFooter';
 import { getIngredients } from '../../utils/localStorageHelper';
+
 import './Home.css';
 
 const Home = () => {
   const navigate = useNavigate();
   const ingredients = getIngredients();
-
-  console.log(ingredients);
 
   const calculateDday = (expirationDate) => {
     const today = new Date();
@@ -17,6 +17,19 @@ const Home = () => {
     const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
     return diffDays;
   };
+
+  const mergedIngredients = ingredients.map((item) => {
+    const keywordMatch = keywordData.keyword_db.find((el) => el.id === item.id);
+    return {
+      ...item,
+      icon: keywordMatch?.icon || '',
+      keyword: keywordMatch?.keyword || '',
+    };
+  });
+  const ingredientBanner = mergedIngredients.slice(0, 3);
+  const expiringSoon = [...mergedIngredients]
+    .sort((a, b) => new Date(a.expiration) - new Date(b.expiration))
+    .slice(0, 6);
 
   return (
     <div className="page-container">
@@ -29,44 +42,38 @@ const Home = () => {
         </div>
         <div className="content">
           <div className="ingredient" onClick={() => navigate('/status')}>
-            <div style={{ fontWeight: 700, marginBottom: '1rem' }}>
-              My items:
-              {ingredients
-                ? ingredients.reduce((total, item) => total + item.count, 0)
-                : 0}
+            <div style={{ fontWeight: 500, marginBottom: '1rem' }}>
+              My Fridge : {ingredients?.length} Items
             </div>
-            <ul>
-              {ingredients.map((item) => (
-                <li key={item.id}>
-                  ID: {item.id}, 유통기한: {item.expiration}, 개수: {item.count}
+            <ul className="status-list">
+              {ingredientBanner.map((item) => (
+                <li key={item.id} className="status-list-li">
+                  <img src={item.icon} />
+                  <div>{item.keyword}</div>
                 </li>
-                // 재료 아이콘 나오면 쓸 코드
-                // <li key={item.id}>
-                //   {item.icon}
-                // </li>
               ))}
             </ul>
           </div>
           <div className="expiration">
-            <div style={{ fontWeight: 700, marginBottom: '1rem' }}>
+            <div style={{ fontWeight: 600, marginBottom: '1rem' }}>
               소비기한 임박
             </div>
-            <ul>
-              {ingredients.map((item) => {
+            <ul className="expiration-list">
+              {expiringSoon.map((item) => {
                 const dDay = calculateDday(item.expiration);
-                let dDayText = '';
-
-                if (dDay > 0) {
-                  dDayText = `D-${dDay}`;
-                } else if (dDay === 0) {
-                  dDayText = 'Today!';
-                } else {
-                  dDayText = `D+${Math.abs(dDay)}`;
-                }
-
+                const dDayText =
+                  dDay > 0
+                    ? `D-${dDay}`
+                    : dDay === 0
+                      ? 'Today!'
+                      : `D+${Math.abs(dDay)}`;
                 return (
-                  <li key={item.id}>
-                    아이콘자리 {item.count} {dDayText}
+                  <li key={`exp-${item.id}`}>
+                    <span className="expiration-list-ingre-info">
+                      <img src={item.icon} alt={item.keyword} />
+                      <div>{item.keyword}</div>
+                    </span>
+                    <div>{dDayText}</div>
                   </li>
                 );
               })}
